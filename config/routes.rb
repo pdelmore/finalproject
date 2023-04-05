@@ -4,6 +4,8 @@ root "notes#index"
 
 get("/my_calendar", { :controller => "notes", :action => "calendar" })
 
+get("/admin", { :controller => "user_authentication", :action => "admin" })
+
   # Routes for the Note resource:
 
   # CREATE

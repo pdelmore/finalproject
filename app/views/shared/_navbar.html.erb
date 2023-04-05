@@ -27,10 +27,10 @@
     <a class="nav-link" href="/edit_user_profile">My Account</a>
         </li>
 
-    <a class="nav-link" href="/">Admin</a>
-
+<% if @current_user.admin == true %>
+    <a class="nav-link" href="/admin">Admin</a>
         </li>
-
+<% end %>
       </ul>
     </div>
   </div>
