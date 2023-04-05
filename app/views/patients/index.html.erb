@@ -67,9 +67,9 @@
     <div class="col-lg-7 col-md-12 mx-auto py-4">
 
       <div>
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped table-fixed">
           <thead>
-            <tr class="table-dark">
+            <tr class="table-active text-center">
 
               <th scope="col">
                 First name
@@ -94,7 +94,7 @@
 
           <tbody>
             <% @list_of_patients.each do |a_patient| %>
-              <tr  class="table-light">
+              <tr  class="table-secondary">
 
                 <td>
                   <%= a_patient.first_name %>

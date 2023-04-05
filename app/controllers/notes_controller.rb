@@ -38,7 +38,7 @@ class NotesController < ApplicationController
     the_note = Note.new
     the_note.body = params.fetch("query_body")
     the_note.patient_id = params.fetch("query_patient_id")
-    the_note.user_id = params.fetch("query_user_id")
+    the_note.user_id = @current_user.id
     the_note.service_id = params.fetch("query_service_id")
     the_note.date = params.fetch("query_date")
     the_note.time = params.fetch("query_time")
@@ -52,15 +52,22 @@ class NotesController < ApplicationController
   end
 
   def update
+    # the_id = params.fetch("path_id")
+    # the_note = Note.where({ :id => the_id }).at(0)
+
+    # the_note.body = params.fetch("query_body")
+    # the_note.patient_id = params.fetch("query_patient_id")
+    # the_note.user_id = @current_user.id
+    # the_note.service_id = params.fetch("query_service_id")
+    # the_note.date = params.fetch("query_date")
+    # the_note.time = params.fetch("query_time")
+
     the_id = params.fetch("path_id")
+
     the_note = Note.where({ :id => the_id }).at(0)
 
-    the_note.body = params.fetch("query_body")
-    the_note.patient_id = params.fetch("query_patient_id")
-    the_note.user_id = params.fetch("query_user_id")
-    the_note.service_id = params.fetch("query_service_id")
-    the_note.date = params.fetch("query_date")
-    the_note.time = params.fetch("query_time")
+    body = params.fetch("query_body")
+    the_note.body = body
 
     if the_note.valid?
       the_note.save
