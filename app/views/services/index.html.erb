@@ -1,0 +1,134 @@
+<div>
+  <div>
+    <h1>
+      List of all services
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new service
+    </h2>
+
+    <form action="/insert_service" method="post">
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title">
+      </div>
+
+      <div>
+        <label for="duration_box">
+          Duration
+        </label>
+
+        <input type="text" id="duration_box" name="query_duration">
+      </div>
+
+      <div>
+        <label for="coverage_box">
+          Coverage
+        </label>
+
+        <input type="text" id="coverage_box" name="query_coverage">
+      </div>
+
+      <div>
+        <label for="price_box">
+          Price
+        </label>
+
+        <input type="text" id="price_box" name="query_price">
+      </div>
+
+      <button>
+        Create service
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Title
+        </th>
+
+        <th>
+          Duration
+        </th>
+
+        <th>
+          Coverage
+        </th>
+
+        <th>
+          Price
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_services.each do |a_service| %>
+      <tr>
+        <td>
+          <%= a_service.id %>
+        </td>
+
+        <td>
+          <%= a_service.title %>
+        </td>
+
+        <td>
+          <%= a_service.duration %>
+        </td>
+
+        <td>
+          <%= a_service.coverage %>
+        </td>
+
+        <td>
+          <%= a_service.price %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_service.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_service.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/services/<%= a_service.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

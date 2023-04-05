@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Service #<%= @the_service.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/services">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_service/<%= @the_service.id %>">
+          Delete service
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_service.title %>
+      </dd>
+
+      <dt>
+        Duration
+      </dt>
+      <dd>
+        <%= @the_service.duration %>
+      </dd>
+
+      <dt>
+        Coverage
+      </dt>
+      <dd>
+        <%= @the_service.coverage %>
+      </dd>
+
+      <dt>
+        Price
+      </dt>
+      <dd>
+        <%= @the_service.price %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_service.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_service.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit service
+    </h2>
+
+    <form action="/modify_service/<%= @the_service.id %>"  method="post" >
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_service.title %>">
+      </div>
+
+      <div>
+        <label for="duration_box">
+          Duration
+        </label>
+
+        <input type="text" id="duration_box" name="query_duration" value="<%= @the_service.duration %>">
+      </div>
+
+      <div>
+        <label for="coverage_box">
+          Coverage
+        </label>
+
+        <input type="text" id="coverage_box" name="query_coverage" value="<%= @the_service.coverage %>">
+      </div>
+
+      <div>
+        <label for="price_box">
+          Price
+        </label>
+
+        <input type="text" id="price_box" name="query_price" value="<%= @the_service.price %>">
+      </div>
+
+      <button>
+        Update service
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
