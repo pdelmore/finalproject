@@ -11,11 +11,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csp_meta_tag %>
 
+      <%= render "shared/cdn_assets" %>
+
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
   </head>
 
   <body>
+<div>
+  <%= render "shared/navbar" %>
+  </div>
+
+  <div>
+    <%= render "shared/flashes" %>
     <%= yield %>
+  </div>
   </body>
 </html>

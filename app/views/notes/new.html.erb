@@ -1,0 +1,68 @@
+    
+    <div class="container">
+    
+    <div class="col-lg-10 offset-lg-1 text-center p-3">
+
+      <div class="card text-center p-3">
+        <div>
+          <h2 class="pb-3">
+            Add a new note
+          </h2>
+
+          <i class="fa-regular fa-pen-to-square fa-2xl" style="color: #ffffff;"></i>
+
+          <form action="/insert_note" method="post">
+
+            <div class="form-group">
+              <label for="date" class="form-label mt-4">Date</label>
+              <input type="date" class="form-control" id="date" name="query_date">
+            </div>
+
+            <div class="form-group">
+              <label for="time" class="form-label mt-4">Time</label>
+              <input type="time" class="form-control" id="time" name="query_time">
+            </div>
+
+            <div class="form-group">
+              <label for="patient_id_box" class="form-label mt-4">
+                Patient name
+              </label>
+
+              <select id="patient_id_box" name="query_patient_id" class="form-select">
+                <% Patient.all.order(:last_name).each do |a_patient| %>
+                  <option value="<%= a_patient.id %>">
+                    <%= a_patient.first_name %> <%= a_patient.last_name %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+
+            <div>
+              <label for="service_id_box" class="form-label mt-4">
+                Service
+              </label>
+
+              <select id="service_id_box" name="query_service_id" class="form-select">
+                <% Service.all.order(:duration).each do |a_service| %>
+                  <option value="<%= a_service.id %>">
+                    <%= a_service.title %>, <%= a_service.duration %> min, <%= a_service.coverage %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="body_box" class="form-label mt-4">
+                Body
+              </label>
+              <textarea id="body_box" name="query_body" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="sumbit" class="btn btn-outline-dark my-4">
+              Create note
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    </div>

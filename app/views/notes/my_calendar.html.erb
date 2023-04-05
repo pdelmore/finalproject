@@ -1,0 +1,20 @@
+
+<div class="container">
+
+<%= month_calendar(events: @matching_calendar_patients) do |date, calendar_patients| %>
+<div class="card-header">
+  <%= date.day %>
+  </div>
+
+  <% calendar_patients.each do |a_session| %>
+<div class="border border-dark">
+<%= a_session.patient.first_name %> <%= a_session.patient.last_name %> | <%= a_session.service.duration %> min 
+</div>
+
+<% end %>
+
+<% end %>
+
+
+
+</div>

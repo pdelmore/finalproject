@@ -299,6 +299,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    simple_calendar (2.4.3)
+      rails (>= 3.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -382,6 +384,7 @@ DEPENDENCIES
   rspec-rails
   rufo
   sassc-rails
+  simple_calendar (~> 2.4)
   spring
   spring-watcher-listen (~> 2.0.0)
   sprockets (< 4)

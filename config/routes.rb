@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 root "notes#index"
 
+get("/my_calendar", { :controller => "notes", :action => "calendar" })
+
   # Routes for the Note resource:
 
   # CREATE
@@ -18,6 +20,9 @@ root "notes#index"
   
   # DELETE
   get("/delete_note/:path_id", { :controller => "notes", :action => "destroy" })
+
+
+  get("/new_note", { :controller => "notes", :action => "new" })
 
   #------------------------------
 

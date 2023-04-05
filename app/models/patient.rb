@@ -12,4 +12,15 @@
 #  updated_at    :datetime         not null
 #
 class Patient < ApplicationRecord
+  validates :address, :presence => true
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+  validates :phone_number, :presence => true
+
+  has_many  :notes, { :class_name => "Note", :foreign_key => "patient_id", :dependent => :destroy }
+
+  has_many :users, { :through => :notes, :source => :user }
+
+  has_many :services, { :through => :notes, :source => :service }
+
 end

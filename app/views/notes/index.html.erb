@@ -1,166 +1,101 @@
-<div>
-  <div>
-    <h1>
-      List of all notes
-    </h1>
-  </div>
+<div class="container">
+
+
+    <div class="col-12 text-center p-3">
+      <h1>
+        List of all notes
+      </h1>
+    </div>
+
+    <div class="gap-2">
+  <a href="/new_note">
+  <button class="btn btn-lg btn-dark" type="button">
+  Add new note
+  </button>
+  </a>
 </div>
 
-<hr>
+    <div class="col-md-12 mx-auto py-4">
 
-<div>
-  <div>
-    <h2>
-      Add a new note
-    </h2>
-
-    <form action="/insert_note" method="post">
       <div>
-        <label for="body_box">
-          Body
-        </label>
+        <% if @page == 0 %>
+          Previous page 
+          |
+        <a href="/notes?page=<%= @page + 1 %>">Next page</a>
+        
+        <% elsif @page == @last_page %>
+          <a href="/notes?page=<%= @page - 1 %>">Previous page</a>
+          |
+          Next page
+        
+        <% else %>
+          <a href="/notes?page=<%= @page - 1 %>">Previous page</a>
+          |
+          <a href="/notes?page=<%= @page + 1 %>">Next page</a>
 
-        <input type="text" id="body_box" name="query_body">
+        <% end %>
       </div>
 
       <div>
-        <label for="patient_id_box">
-          Patient
-        </label>
+        <table class="table table-hover table-striped table-fixed">
+          <thead>
+            <tr class="table-active text-center">
+              <th scope="row">
+                Date
+              </th>
 
-        <input type="text" id="patient_id_box" name="query_patient_id">
+              <th scope="row">
+                Patient name
+              </th>
+
+              <th scope="row">
+                Service
+              </th>
+
+              <th scope="row">
+                Note
+              </th>
+
+              <th scope="row">
+                Provider
+              </th>
+
+              <th scope="row">
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @list_of_notes_paginated.each do |a_note| %>
+              <tr class="table-secondary">
+                <td>
+                  <%= a_note.date.strftime("%b %d, %Y") %>
+                </td>
+
+                <td>
+                  <%= a_note.patient.first_name %> <%= a_note.patient.last_name %>
+                </td>
+
+                <td>
+                  <%= a_note.body.truncate(110, separator: ' ') %>
+                </td>
+
+                <td>
+                  <%= a_note.user.first_name %>
+                </td>
+
+                <td>
+                  <a href="/notes/<%= a_note.id %>">
+                    Show details
+                  </a>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
       </div>
 
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
+    </div>
 
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
-      <div>
-        <label for="service_id_box">
-          Service
-        </label>
-
-        <input type="text" id="service_id_box" name="query_service_id">
-      </div>
-
-      <div>
-        <label for="date_box">
-          Date
-        </label>
-
-        <input type="date" id="date_box" name="query_date">
-      </div>
-
-      <div>
-        <label for="time_box">
-          Time
-        </label>
-
-        <input type="time" id="time_box" name="query_time">
-      </div>
-
-      <button>
-        Create note
-      </button>
-    </form>
-  </div>
 </div>
-
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Body
-        </th>
-
-        <th>
-          Patient
-        </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-          Service
-        </th>
-
-        <th>
-          Date
-        </th>
-
-        <th>
-          Time
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_notes.each do |a_note| %>
-      <tr>
-        <td>
-          <%= a_note.id %>
-        </td>
-
-        <td>
-          <%= a_note.body %>
-        </td>
-
-        <td>
-          <%= a_note.patient_id %>
-        </td>
-
-        <td>
-          <%= a_note.user_id %>
-        </td>
-
-        <td>
-          <%= a_note.service_id %>
-        </td>
-
-        <td>
-          <%= a_note.date %>
-        </td>
-
-        <td>
-          <%= a_note.time %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_note.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_note.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/notes/<%= a_note.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>
