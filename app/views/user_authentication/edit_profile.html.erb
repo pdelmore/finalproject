@@ -1,40 +1,32 @@
-<div >
-  <h5>
-    Edit User Account
+<div class="container text-center mt-5">
+  <h5 class="mb-3">
+    Edit my account
   </h5>
 
-  <div>
+<div class="row justify-content-center">
     <form action="/modify_user" method="post">
-      <div>
-        <label for="email_box">Email</label>
-        <input id="email_box" name="query_email" value="<%= @current_user.email %>">
-      </div>
-      <div>
-        <label for="first_name_box">First name</label>
-        <input id="first_name_box" name="query_first_name" value="<%= @current_user.first_name %>">
-      </div>
-      <div>
-        <label for="last_name_box">Last name</label>
-        <input id="last_name_box" name="query_last_name" value="<%= @current_user.last_name %>">
-      </div>
-      <div>
-        <label for="admin_box">Admin</label>
-        <input id="admin_box" name="query_admin" type="checkbox" value="1" <%= "checked" if @current_user.admin %>>
-      </div>
-
-      <div>
-        <label for="password_box">Password</label>
-        <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
-      </div>
-    
-      <div>
-        <label for="password_confirmation_box">Password Confirmation</label>
-        <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password">
-      </div>
-
-      <button>
-        Update account
-      </button>
-    </form>
+    <div class="col-md-6 col-lg-4 offset-lg-4">
+  <div class="form-group mb-2">
+    <label for="email_box" disabled="">Email address</label>
+    <input type="text" class="form-control"  id="email_box" name="query_email" value="<%= @current_user.email %>" disabled="">
   </div>
+  <div class="form-group mb-2 mt-4">
+    <label for="first_name_box">First name</label>
+    <input type="text" class="form-control" id="first_name_box" name="query_first_name" value="<%= @current_user.first_name %>">
+  </div>
+  <div class="form-group mb-2">
+    <label for="last_name_box">Last name</label>
+    <input type="text" class="form-control" id="last_name_box" name="query_first_name" value="<%= @current_user.last_name %>">
+  </div>
+  <div class="form-group mb-2 mt-4">
+    <label for="password_box">New password</label>
+    <input type="password" name="query_password" class="form-control" id="password_box" placeholder="Choose a password...">
+  </div>
+  <div class="form-group mb-2">
+    <label for="password_confirmation_box">Confirm new password</label>
+    <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password"  class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Update account</button>
+</form>
+</div>
 </div>
