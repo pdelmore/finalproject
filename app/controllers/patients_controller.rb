@@ -14,6 +14,8 @@ class PatientsController < ApplicationController
 
     @the_patient = matching_patients.at(0)
 
+    @admin = User.where({ :admin => true }).first
+
     render({ :template => "patients/show.html.erb" })
   end
 

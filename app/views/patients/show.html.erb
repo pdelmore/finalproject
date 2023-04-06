@@ -1,7 +1,7 @@
-<div>
+<div class="container">
   <div>
     <h1>
-      Patient #<%= @the_patient.id %> details
+      Patient: <%= @the_patient.first_name %> <%= @the_patient.last_name %>
     </h1>
 
     <div>
@@ -11,11 +11,13 @@
         </a>
       </div>
 
+      <% if @current_user.admin == true %>
       <div>
         <a href="/delete_patient/<%= @the_patient.id %>">
           Delete patient
         </a>
       </div>
+      <% end %>
     </div>
 
     <dl>
@@ -69,12 +71,11 @@
       </dd>
     </dl>
   </div>
-</div>
+
 
 <hr>
 
-
-<div>
+<% if @current_user.admin == true %>
   <div>
     <h2>
       Edit patient
@@ -126,6 +127,12 @@
       </button>
     </form>
   </div>
+<% else %>
+It looks like you're not an admin, so you can't edit this patient. If you would like to request changes to this patient information, please reach out to <%= @admin.first_name %> <%= @admin.last_name %>.
+
+<% end %>
+
+
 </div>
 
 <hr>
