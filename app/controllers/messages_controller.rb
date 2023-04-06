@@ -4,6 +4,11 @@ class MessagesController < ApplicationController
 
     @list_of_messages = matching_messages.order({ :created_at => :desc })
 
+    # @messages = @list_of_messages.group_by{ |m| [m.sender, m.recipient] }
+
+      @messages = Message.where(sender_id: @current_user.id).or(Message.where(recipient: @current_user.id)).group_by{ |m| [m.sender, m.recipient] }
+    
+
     render({ :template => "messages/index.html.erb" })
   end
 
@@ -19,7 +24,7 @@ class MessagesController < ApplicationController
 
   def create
     the_message = Message.new
-    the_message.sender_id = params.fetch("query_sender_id")
+    the_message.sender_id = @current_user.id
     the_message.recipient_id = params.fetch("query_recipient_id")
     the_message.body = params.fetch("query_body")
 
