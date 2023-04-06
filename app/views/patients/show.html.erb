@@ -1,79 +1,51 @@
 <div class="container">
-  <div>
-    <h1>
-      Patient: <%= @the_patient.first_name %> <%= @the_patient.last_name %>
-    </h1>
-
-    <div>
-      <div>
+    <div class="mb-2">
         <a href="/patients">
           Go back
         </a>
-      </div>
+    </div>
 
-      <% if @current_user.admin == true %>
+
+<div class="">
+    <h3>
+      Patient: <%= @the_patient.first_name %> <%= @the_patient.last_name %>
+    </h3>
+          <% if @current_user.admin == true %>
       <div>
         <a href="/delete_patient/<%= @the_patient.id %>">
           Delete patient
         </a>
       </div>
       <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Personal Information</h5>
+        </div>
+        <div class="card-body">
+          <p><strong>Address:</strong> <%= @the_patient.address %>
+          <p><strong>Phone number:</strong> <%= @the_patient.phone_number %>
+          <p><strong>Added:</strong> <%= time_ago_in_words(@the_patient.created_at) %> ago
+        </div>
+      </div>
     </div>
 
-    <dl>
-      <dt>
-        First name
-      </dt>
-      <dd>
-        <%= @the_patient.first_name %>
-      </dd>
-
-      <dt>
-        Last name
-      </dt>
-      <dd>
-        <%= @the_patient.last_name %>
-      </dd>
-
-      <dt>
-        Address
-      </dt>
-      <dd>
-        <%= @the_patient.address %>
-      </dd>
-
-      <dt>
-        Phone number
-      </dt>
-      <dd>
-        <%= @the_patient.phone_number %>
-      </dd>
-
-      <dt>
-        General notes
-      </dt>
-      <dd>
-        <%= @the_patient.general_notes %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_patient.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_patient.updated_at) %> ago
-      </dd>
-    </dl>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">General Notes</h5>
+        </div>
+        <div class="card-body">
+          <p><%= @the_patient.general_notes %></p>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
 
-<hr>
 
 <% if @current_user.admin == true %>
   <div>
@@ -128,49 +100,11 @@
     </form>
   </div>
 <% else %>
+<div class="m-5">
 It looks like you're not an admin, so you can't edit this patient. If you would like to request changes to this patient information, please reach out to <%= @admin.first_name %> <%= @admin.last_name %>.
+</div>
 
 <% end %>
 
 
 </div>
-
-<hr>
-
-
-<div class="container">
-  <h1>Patient Details</h1>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h5 class="card-title">Personal Information</h5>
-        </div>
-        <div class="card-body">
-          <p><strong>Name:</strong> John Doe</p>
-          <p><strong>Date of Birth:</strong> January 1, 1990</p>
-          <p><strong>Gender:</strong> Male</p>
-          <p><strong>Phone:</strong> (123) 456-7890</p>
-          <p><strong>Email:</strong> john.doe@example.com</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h5 class="card-title">Medical Information</h5>
-        </div>
-        <div class="card-body">
-          <p><strong>Height:</strong> 6'0"</p>
-          <p><strong>Weight:</strong> 175 lbs</p>
-          <p><strong>Blood Type:</strong> O+</p>
-          <p><strong>Allergies:</strong> None</p>
-          <p><strong>Medical Conditions:</strong> Asthma, Diabetes</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-

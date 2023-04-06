@@ -21,6 +21,8 @@ class NotesController < ApplicationController
     pg_n_rounded = page_number_float.floor.to_i
     @last_page = pg_n_rounded - 1
 
+    
+
     render({ :template => "notes/index.html.erb" })
   end
 
