@@ -69,11 +69,11 @@
 <hr>
 
 
-
+<div>
 <% @threads.each do |thread_key, messages| %>
   <div class="thread">
     <h2>Conversation between <%= User.find(thread_key[0]).first_name %> and <%= User.find(thread_key[1]).first_name %></h2>
-    <div class="myDiv" style="height: 200px; overflow: auto;">
+    <div id="myDiv<%= thread_key[0] %>_<%= thread_key[1] %>" style="height: 200px; overflow: auto;">
     <% messages.each do |message| %>
       <div class="message">
         <p><%= message.body %></p>
@@ -84,13 +84,7 @@
     <% end %>
   </div>
 <% end %>
+</div>
 
 
 </div>
-
-<script>
-  window.onload = function() {
-    var myDiv = document.getElementById("myDiv");
-    myDiv.scrollTop = myDiv.scrollHeight;
-  };
-</script>
