@@ -37,6 +37,8 @@ get("/admin", { :controller => "user_authentication", :action => "admin" })
   get("/patients", { :controller => "patients", :action => "index" })
   
   get("/patients/:path_id", { :controller => "patients", :action => "show" })
+
+  get("/admin/patients", { :controller => "patients", :action => "admin" })
   
   # UPDATE
   

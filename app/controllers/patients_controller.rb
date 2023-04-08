@@ -67,4 +67,18 @@ class PatientsController < ApplicationController
 
     redirect_to("/patients", { :notice => "Patient deleted successfully."} )
   end
+
+
+
+
+  def admin
+    matching_patients = Patient.all
+
+    @list_of_patients = matching_patients.order({ :created_at => :desc })
+
+
+    @patients = @list_of_patients.paginate(page: params[:page], per_page: 20)
+
+    render({ :template => "patients/admin-patients.html.erb" })
+  end
 end

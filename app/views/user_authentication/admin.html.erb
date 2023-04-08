@@ -1,1 +1,80 @@
 Admin Page
+
+
+
+Content:
+
+- add a new patient
+
+- edit a patient (users can only edit general notes; shows "updated_at")
+
+- edit services
+
+- edit users (add, delete)
+
+
+
+
+  <!-- Main Content -->
+  <div class="container my-4">
+    <h1 class="text-center">Welcome to the Admin Page</h1>
+    <div class="row my-4">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Patients</h5>
+            <p class="card-text">Manage patient records and appointments.</p>
+
+            <a href="/admin/patients" class="btn btn-primary mb-3">Add a new patient</a>
+
+            <p class="card-text mt-3">Do you want to edit or delete a patient? Select patient's name below to visit their details page:</p>
+<div class="dropdown btn-group">
+
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+    Patient's name
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <% Patient.all.order(:last_name).each do |a_patient| %>
+    <li>
+    <a class="dropdown-item" href="/patients/<%= a_patient.id %>">
+    <%= a_patient.first_name %> <%= a_patient.last_name %>
+    </a>
+    </li>
+    <% end %>
+
+  </ul>
+</div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Services</h5>
+            <p class="card-text">Manage the services provided by your organization.</p>
+            <a href="#" class="btn btn-primary">Go to Services</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Users</h5>
+            <p class="card-text">Manage user accounts and permissions.</p>
+            <a href="#" class="btn btn-primary">Go to Users</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<script>
+$('.dropdown-item').on('click', function() {
+  window.location.href = $(this).attr('href');
+});
+
+</script>

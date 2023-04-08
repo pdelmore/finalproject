@@ -1,0 +1,146 @@
+Admin Patients
+
+
+
+
+<div class="container">
+  <div class="row justify-content-space-between gap-5">
+
+    <div class="col-12 text-center">
+      <h1>
+        List of all patients
+      </h1>
+    </div>
+    <div class="col-lg-4 col-md-12 text-center">
+
+      <div class="text-center">
+        <div>
+          <h2 class="pb-3">
+            Add a new patient
+          </h2>
+
+          <form action="/insert_patient" method="post">
+            <div class="form-group">
+              <label for="first_name_box" class="form-label mt-4">
+                First name
+              </label>
+
+              <input type="text" class="form-control" id="first_name_box" name="query_first_name">
+            </div>
+
+            <div class="form-group">
+              <label for="last_name_box" class="form-label mt-4">
+                Last name
+              </label>
+
+              <input type="text" class="form-control" id="last_name_box" name="query_last_name">
+            </div>
+
+            <div class="form-group">
+              <label for="address_box" class="form-label mt-4">
+                Address
+              </label>
+
+              <input type="text" class="form-control" id="address_box" name="query_address">
+            </div>
+
+            <div class="form-group">
+              <label for="phone_number_box" class="form-label mt-4">
+                Phone number
+              </label>
+
+              <input type="tel" class="form-control" id="phone_number_box" name="query_phone_number" placeholder="123-456-789" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}">
+            </div>
+
+                  <div class="form-group">
+        <label for="general_notes_box" class="form-label mt-4">
+          General notes
+        </label>
+
+        <input type="text" id="general_notes_box" name="query_general_notes" class="form-control">
+      </div>
+
+            <button type="sumbit" class="btn btn-outline-dark my-4">
+              Add a patient
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-12 mx-auto py-4">
+
+      <div>
+      <%= will_paginate @patients, class: "flickr_pagination" %>
+        <table class="table table-hover table-striped table-fixed">
+          <thead>
+            <tr class="table-active">
+
+              <th scope="col">
+                First name
+              </th>
+
+              <th scope="col">
+                Last name
+              </th>
+
+              <th scope="col">
+                Most recent session
+              </th>
+
+              <th scope="col">
+                Last provider
+              </th>
+
+              <th scope="col">
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @patients.each do |a_patient| %>
+              <tr  class="table-secondary">
+
+                <td>
+                  <%= a_patient.first_name %>
+                </td>
+
+                <td>
+                  <%= a_patient.last_name %>
+                </td>
+
+                <% last_note = a_patient.notes.order(:date => :asc).at(0) %>
+                <% if last_note != nil %>
+                  <td>
+                    <%= last_note.date.strftime("%b %d, %Y") %>
+                  </td>
+                <% else %>
+                  <td>
+                    no recent notes
+                  </td>
+                <% end %>
+
+                <% if last_note != nil %>
+                  <td>
+                    <%= a_patient.users.first.first_name %>
+                  </td>
+                <% else %>
+                  <td>
+                    no provider to display
+                  </td>
+                <% end %>
+
+                <td>
+                  <a href="/patients/<%= a_patient.id %>">
+                    Show details
+                  </a>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
