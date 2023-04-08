@@ -26,15 +26,5 @@
     <%= render "shared/flashes" %>
     <%= yield %>
   </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    console.log("JavaScript code executed")
-    <% @threads.each do |thread_key, messages| %>
-      var myDiv<%= thread_key[0] %>_<%= thread_key[1] %> = document.getElementById("myDiv<%= thread_key[0] %>_<%= thread_key[1] %>");
-      myDiv<%= thread_key[0] %>_<%= thread_key[1] %>.scrollTop = myDiv<%= thread_key[0] %>_<%= thread_key[1] %>.scrollHeight;
-    <% end %>
-  });
-</script>
   </body>
 </html>
