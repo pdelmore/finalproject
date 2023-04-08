@@ -1,92 +1,58 @@
-
 <div class="container">
-
-<div class="left row cols-lg-2">
-  <div class="col lg-6">
-    <h2>
-      Send a new message
-    </h2>
-
-    <form action="/insert_message" method="post">
-
-        <div>
-        <label for="recipient_id_box">
-          Recipient
-        </label>
-              <select id="recipient_id_box" name="query_recipient_id" class="form-select">
-                <% User.all.order(:last_name).each do |a_user| %>
-                <% next if a_user.id == @current_user.id %>
-                  <option value="<%= a_user.id %>">
-                    <%= a_user.first_name %> <%= a_user.last_name %>
-                  </option>
-                <% end %>
-              </select>
-            </div>
-
-
-          <div class="form-group">
-      <label for="body_box" class="form-label mt-4">Message</label>
-
-      <textarea class="form-control" id="body_box" name="query_body" rows="5"></textarea>
+  <div class="row">
+    <div class="col-lg-6 text-center">
+      <h2>Send a new message</h2>
+      <form action="/insert_message" method="post">
+        <div class="form-group">
+          <label for="recipient_id_box">Recipient</label>
+          <select id="recipient_id_box" name="query_recipient_id" class="form-select">
+            <% User.all.order(:last_name).each do |a_user| %>
+            <% next if a_user.id == @current_user.id %>
+            <option value="<%= a_user.id %>">
+              <%= a_user.first_name %> <%= a_user.last_name %>
+            </option>
+            <% end %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="body_box" class="form-label mt-4">Message</label>
+          <textarea class="form-control" id="body_box" name="query_body" rows="5"></textarea>
+        </div>
+        <button class="btn btn-primary mt-3">Create message</button>
+      </form>
     </div>
-
-
-
-      <button>
-        Create message
-      </button>
-    </form>
-  </div>
-</div>
-</div>
-<hr>
-
-
-<div class="right">
-<h1>Messages</h1>
-
-
-
-
-
-<div class="container text-center">
-  <div class="btn-group" role="group" aria-label="Conversation links">
-    <% @threads.each do |thread_key, messages| %>
-      <a href="#myDiv<%= thread_key[0] %>_<%= thread_key[1] %>" class="btn btn-primary">
-        <%= User.find(thread_key[1]).first_name %>
-      </a>
-    <% end %>
-  </div>
-</div>
-
-<div class="container">
-<div class="row">
-
-    <% @threads.each do |thread_key, messages| %>
-      <div class="thread col">
-      <div class="card rounded-3 my-5 text-center bg-light">
-        <h2 class="card-header">Conversation with <%= User.find(thread_key[1]).first_name %></h2>
-        <div id="myDiv<%= thread_key[0] %>_<%= thread_key[1] %>" style="height: 400px; overflow-y: scroll;" class="card-body">
-          <% messages.each do |message| %>
-            <div class="message <%= message.sender_id == @current_user.id ? 'sent' : 'received' %> rounded-3 text-center">
-              <p class="pt-3"><%= message.body %></p>
-              <p class="text-end me-5 pb-2 fst-italic fst-lighter">Sent: <%= message.created_at.strftime("%-d %b %Y, at %-l:%M %p") %></p>
-            </div>
+    <div class="col-lg-6">
+      <h1>Messages</h1>
+      <div class="container text-center">
+        <div class="btn-group" role="group" aria-label="Conversation links">
+          <% @threads.each do |thread_key, messages| %>
+          <a href="#myDiv<%= thread_key[0] %>_<%= thread_key[1] %>" class="btn btn-primary">
+            <%= User.find(thread_key[1]).first_name %>
+          </a>
           <% end %>
         </div>
       </div>
-    <% end %>
+      <div class="container">
+        <% @threads.each do |thread_key, messages| %>
+        <div class="thread my-5">
+          <div class="card rounded-3 bg-light">
+            <h2 class="card-header">Conversation with <%= User.find(thread_key[1]).first_name %></h2>
+            <div id="myDiv<%= thread_key[0] %>_<%= thread_key[1] %>" style="height: 400px; overflow-y: scroll;" class="card-body">
+              <% messages.each do |message| %>
+              <div class="message <%= message.sender_id == @current_user.id ? 'sent' : 'received' %> rounded-3">
+                <p class="pt-3"><%= message.body %></p>
+                <p class="text-end me-5 pb-2 fst-italic fst-lighter">Sent: <%= message.created_at.strftime("%-d %b %Y, at %-l:%M %p") %></p>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-  </div>
 </div>
 
-
-</div>
-
-
-</div>
-
-</div>
 
 
 
