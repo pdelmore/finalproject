@@ -18,22 +18,7 @@
     <div class="col-md-12 mx-auto py-4">
 
       <div>
-        <% if @page == 0 %>
-          Previous page 
-          |
-        <a href="/notes?page=<%= @page + 1 %>">Next page</a>
-        
-        <% elsif @page == @last_page %>
-          <a href="/notes?page=<%= @page - 1 %>">Previous page</a>
-          |
-          Next page
-        
-        <% else %>
-          <a href="/notes?page=<%= @page - 1 %>">Previous page</a>
-          |
-          <a href="/notes?page=<%= @page + 1 %>">Next page</a>
-
-        <% end %>
+<%= will_paginate @posts, class: "flickr_pagination" %>
       </div>
 
       <div>
@@ -66,7 +51,7 @@
           </thead>
 
           <tbody>
-            <% @list_of_notes_paginated.each do |a_note| %>
+            <% @notes.each do |a_note| %>
               <tr class="table-secondary">
                 <td>
                   <%= a_note.date.strftime("%b %d, %Y") %>
@@ -99,4 +84,3 @@
     </div>
 
 </div>
-

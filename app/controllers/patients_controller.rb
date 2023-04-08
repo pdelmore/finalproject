@@ -4,6 +4,10 @@ class PatientsController < ApplicationController
 
     @list_of_patients = matching_patients.order({ :created_at => :desc })
 
+
+    @patients = @list_of_patients.paginate(page: params[:page], per_page: 20)
+
+
     render({ :template => "patients/index.html.erb" })
   end
 
@@ -15,6 +19,8 @@ class PatientsController < ApplicationController
     @the_patient = matching_patients.at(0)
 
     @admin = User.where({ :admin => true }).first
+
+    @matching_notes = @the_patient.notes.paginate(page: params[:page], per_page: 10)
 
     render({ :template => "patients/show.html.erb" })
   end

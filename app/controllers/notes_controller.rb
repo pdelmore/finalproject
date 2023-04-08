@@ -11,17 +11,18 @@ class NotesController < ApplicationController
     # number of notes, to float because needs to divide later
     # divide page_number by notes_per_page, round, to integer
 
-    @page = params.fetch(:page, 0).to_i
+    # @page = params.fetch(:page, 0).to_i
 
-    @list_of_notes_paginated = @list_of_notes.limit(NOTES_PER_PAGE).offset(@page * NOTES_PER_PAGE)
+    # @list_of_notes_paginated = @list_of_notes.limit(NOTES_PER_PAGE).offset(@page * NOTES_PER_PAGE)
 
-    number_of_notes = Note.count 
-    number_of_pages_float = number_of_notes.to_f
-    page_number_float = number_of_pages_float / NOTES_PER_PAGE
-    pg_n_rounded = page_number_float.floor.to_i
-    @last_page = pg_n_rounded - 1
+    # number_of_notes = Note.count 
+    # number_of_pages_float = number_of_notes.to_f
+    # page_number_float = number_of_pages_float / NOTES_PER_PAGE
+    # pg_n_rounded = page_number_float.floor.to_i
+    # @last_page = pg_n_rounded - 1
 
     
+    @notes = @list_of_notes.paginate(page: params[:page], per_page: 20)
 
     render({ :template => "notes/index.html.erb" })
   end

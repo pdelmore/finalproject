@@ -106,5 +106,73 @@ It looks like you're not an admin, so you can't edit this patient. If you would 
 
 <% end %>
 
+</div>
+
+
+<div>
+<h1>All notes for a patient</h1>
+
+<div>
+<%= will_paginate @matching_notes, class: "flickr_pagination" %>
+      </div>
+
+      <div class="container">
+        <table class="table table-hover table-striped table-fixed">
+          <thead>
+            <tr class="table-active text-center">
+              <th scope="row">
+                Date
+              </th>
+
+              <th scope="row">
+                Service
+              </th>
+
+              <th scope="row">
+                Note
+              </th>
+
+              <th scope="row">
+                Provider
+              </th>
+
+              <th scope="row">
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @matching_notes.each do |a_note| %>
+              <tr class="table-secondary">
+                <td>
+                  <%= a_note.date.strftime("%b %d, %Y") %>
+                </td>
+
+                <td>
+                 <%= a_note.service.duration %> min <%= a_note.service.title %>
+                </td>
+
+                <td>
+                  <%= a_note.body.truncate(110, separator: ' ') %>
+                </td>
+
+                <td>
+                 <%= a_note.user.first_name %>
+                </td>
+
+                <td>
+                  <a href="/notes/<%= a_note.id %>">
+                    Show details
+                  </a>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
 
 </div>
