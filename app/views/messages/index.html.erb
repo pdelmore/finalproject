@@ -65,3 +65,32 @@
     <% end %>
   </div>
 <% end %>
+
+<hr>
+
+
+
+<% @threads.each do |thread_key, messages| %>
+  <div class="thread">
+    <h2>Conversation between <%= User.find(thread_key[0]).first_name %> and <%= User.find(thread_key[1]).first_name %></h2>
+    <div class="myDiv" style="height: 200px; overflow: auto;">
+    <% messages.each do |message| %>
+      <div class="message">
+        <p><%= message.body %></p>
+                <p>From: <%= message.sender.first_name %></p>
+        <p>To: <%= message.recipient.first_name %></p> 
+                          <p>Sent: <%= message.created_at.strftime("%-d %b %Y, at %-l:%M %p") %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
+</div>
+
+<script>
+  window.onload = function() {
+    var myDiv = document.getElementById("myDiv");
+    myDiv.scrollTop = myDiv.scrollHeight;
+  };
+</script>
