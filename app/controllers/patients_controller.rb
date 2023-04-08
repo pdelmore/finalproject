@@ -81,4 +81,10 @@ class PatientsController < ApplicationController
 
     render({ :template => "patients/admin-patients.html.erb" })
   end
+
+  def admin_new
+
+
+    render({ :template => "patients/new.html.erb" })
+  end
 end

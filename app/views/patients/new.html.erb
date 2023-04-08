@@ -1,0 +1,54 @@
+<div class="text-center col-lg-4 offset-lg-4 text-center p-3">
+        <div>
+          <h2 class="pb-3">
+            Add a new patient
+          </h2>
+
+          <form action="/insert_patient" method="post">
+            <div class="form-group">
+              <label for="first_name_box" class="form-label mt-4">
+                First name
+              </label>
+
+              <input type="text" class="form-control" id="first_name_box" name="query_first_name">
+            </div>
+
+            <div class="form-group">
+              <label for="last_name_box" class="form-label mt-4">
+                Last name
+              </label>
+
+              <input type="text" class="form-control" id="last_name_box" name="query_last_name">
+            </div>
+
+            <div class="form-group">
+              <label for="address_box" class="form-label mt-4">
+                Address
+              </label>
+
+              <input type="text" class="form-control" id="address_box" name="query_address">
+            </div>
+
+            <div class="form-group">
+              <label for="phone_number_box" class="form-label mt-4">
+                Phone number
+              </label>
+
+              <input type="tel" class="form-control" id="phone_number_box" name="query_phone_number" placeholder="123-456-789" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}">
+            </div>
+
+                  <div class="form-group">
+        <label for="general_notes_box" class="form-label mt-4">
+          General notes
+        </label>
+
+        <textarea type="text" id="general_notes_box" name="query_general_notes" class="form-control" rows="3">
+        </textarea>
+      </div>
+
+            <button type="sumbit" class="btn btn-outline-dark my-4">
+              Add a patient
+            </button>
+          </form>
+        </div>
+      </div>
