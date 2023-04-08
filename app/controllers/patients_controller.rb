@@ -20,7 +20,7 @@ class PatientsController < ApplicationController
 
     @admin = User.where({ :admin => true }).first
 
-    @matching_notes = @the_patient.notes.paginate(page: params[:page], per_page: 10)
+    @matching_notes = @the_patient.notes.paginate(page: params[:page], per_page: 10).order({ :date => :desc })
 
     render({ :template => "patients/show.html.erb" })
   end
