@@ -1,11 +1,7 @@
 <div class="container">
   <div>
-    <h1>
-      Note #<%= @the_note.id %> details
-    </h1>
 
-    <div>
-      <div>
+      <div class="pt-4">
         <a href="/notes">
           Go back
         </a>
@@ -18,129 +14,98 @@
       </div>
     </div>
 
-    <dl>
-      <dt>
-        Body
-      </dt>
-      <dd>
-        <%= @the_note.body %>
-      </dd>
 
-      <dt>
-        Patient
-      </dt>
-      <dd>
-        <%= @the_note.patient_id %>
-      </dd>
 
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @the_note.user_id %>
-      </dd>
 
-      <dt>
-        Service
-      </dt>
-      <dd>
-        <%= @the_note.service_id %>
-      </dd>
+  <div class="container">
+    <h1 class="text-center my-4">Patient Note Details</h1>
 
-      <dt>
-        Date
-      </dt>
-      <dd>
-        <%= @the_note.date %>
-      </dd>
+    <!-- Patient Name -->
+    <div class="row mb-3">
+      <div class="col-sm-3 fw-bold">Patient Name:</div>
+      <div class="col-sm-9">
+      <%= @the_note.patient.first_name %> <%= @the_note.patient.last_name %>
+      </div>
+    </div>
 
-      <dt>
-        Time
-      </dt>
-      <dd>
-        <%= @the_note.time %>
-      </dd>
+    <!-- Provider Name -->
+    <div class="row mb-3">
+      <div class="col-sm-3 fw-bold">Provider Name:</div>
+      <div class="col-sm-9"><%= @the_note.user.first_name %></div>
+    </div>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_note.created_at) %> ago
-      </dd>
+    <!-- Date and Time -->
+    <div class="row mb-3">
+      <div class="col-sm-3 fw-bold">Date:</div>
+      <div class="col-sm-9">April 8, 2023 at 2:30 PM</div>
+    </div>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_note.updated_at) %> ago
-      </dd>
-    </dl>
+    <!-- Note Body -->
+    <div class="row mb-3">
+      <div class="col-sm-3 fw-bold">Session notes:</div>
+      <div class="col-sm-9">
+      <%= @the_note.body %>
+      </div>
+    </div>
+
+    <!-- Added On -->
+    <div class="row mb-3">
+      <div class="col-sm-3 fw-bold">Note added on:</div>
+      <div class="col-sm-9">April 8, 2023 at 3:00 PM</div>
+    </div>
+
+    <!-- Edit Note Body, needs to make it work -->
+    <div class="row mb-3">
+      <div class="col-sm-3 fw-bold">Edit your note here:</div>
+      <div class="col-sm-9"><textarea class="form-control"><%= @the_note.body %></textarea></div>
+    </div>
+
+    <button class="btn btn-primary">Save Changes</button>
+    
   </div>
-</div>
-
-<hr>
 
 
-<div>
-  <div>
-    <h2>
-      Edit note
-    </h2>
+<% if false == true %>
+<div class="container row pt-5">
+  <div class="col-lg-4 offset-lg-4">
+    <h2>Edit note</h2>
 
-    <form action="/modify_note/<%= @the_note.id %>"  method="post" >
-      <div>
-        <label for="body_box">
-          Body
-        </label>
+    <form action="/modify_note/<%= @the_note.id %>" method="post">
 
-        <input type="text" id="body_box" name="query_body" value="<%= @the_note.body %>">
+      <div class="mb-3">
+        <label for="body_box" class="form-label">Body</label>
+        <input type="text" id="body_box" name="query_body" value="<%= @the_note.body %>" class="form-control">
       </div>
 
-      <div>
-        <label for="patient_id_box">
-          Patient
-        </label>
-
-        <input type="text" id="patient_id_box" name="query_patient_id" value="<%= @the_note.patient_id %>">
+      <div class="mb-3">
+        <label for="patient_id_box" class="form-label">Patient</label>
+        <input type="text" id="patient_id_box" name="query_patient_id" value="<%= @the_note.patient_id %>" class="form-control">
       </div>
 
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_note.user_id %>">
+      <div class="mb-3">
+        <label for="user_id_box" class="form-label">User</label>
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_note.user_id %>" class="form-control">
       </div>
 
-      <div>
-        <label for="service_id_box">
-          Service
-        </label>
-
-        <input type="text" id="service_id_box" name="query_service_id" value="<%= @the_note.service_id %>">
+      <div class="mb-3">
+        <label for="service_id_box" class="form-label">Service</label>
+        <input type="text" id="service_id_box" name="query_service_id" value="<%= @the_note.service_id %>" class="form-control">
       </div>
 
-      <div>
-        <label for="date_box">
-          Date
-        </label>
-
-        <input type="date" id="date_box" name="query_date" value="<%= @the_note.date %>">
+      <div class="mb-3">
+        <label for="date_box" class="form-label">Date</label>
+        <input type="date" id="date_box" name="query_date" value="<%= @the_note.date %>" class="form-control">
       </div>
 
-      <div>
-        <label for="time_box">
-          Time
-        </label>
-
-        <input type="time" id="time_box" name="query_time" value="<%= @the_note.time %>">
+      <div class="mb-3">
+        <label for="time_box" class="form-label">Time</label>
+        <input type="time" id="time_box" name="query_time" value="<%= @the_note.time %>" class="form-control">
       </div>
 
-      <button>
-        Update note
-      </button>
+      <button class="btn btn-primary">Update note</button>
+
     </form>
   </div>
 </div>
 
-<hr>
+<% end %>
