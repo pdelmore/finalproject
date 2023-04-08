@@ -6,6 +6,8 @@
   </div>
 </div>
 
+
+
 <hr>
 
 <div>
@@ -52,39 +54,59 @@
 
 
 
-<% @threads.each do |thread_key, messages| %>
+
+<div class="container text-center">
+  <div class="btn-group" role="group" aria-label="Conversation links">
+    <% @threads.each do |thread_key, messages| %>
+      <a href="#myDiv<%= thread_key[0] %>_<%= thread_key[1] %>" class="btn btn-primary">
+        <%= User.find(thread_key[1]).first_name %>
+      </a>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
   <div class="thread">
-    <h2>Conversation between <%= User.find(thread_key[0]).first_name %> and <%= User.find(thread_key[1]).first_name %></h2>
-    <% messages.each do |message| %>
-      <div class="message">
-        <p><%= message.body %></p>
-                <p>From: <%= message.sender.first_name %></p>
-        <p>To: <%= message.recipient.first_name %></p> 
-                          <p>Sent: <%= message.created_at.strftime("%-d %b %Y, at %-l:%M %p") %></p>
+    <% @threads.each do |thread_key, messages| %>
+      <div class="card rounded-3 my-5 text-center bg-light">
+        <h2 class="card-header">Conversation with <%= User.find(thread_key[1]).first_name %></h2>
+        <div id="myDiv<%= thread_key[0] %>_<%= thread_key[1] %>" style="height: 200px; overflow-y: scroll;" class="card-body">
+          <% messages.each do |message| %>
+            <div class="message <%= message.sender_id == @current_user.id ? 'sent' : 'received' %> rounded-3 text-center">
+              <p class="pt-3"><%= message.body %></p>
+              <p class="text-end me-5 pb-2 fst-italic fst-lighter">Sent: <%= message.created_at.strftime("%-d %b %Y, at %-l:%M %p") %></p>
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
-<% end %>
-
-<hr>
-
-
-<div>
-<% @threads.each do |thread_key, messages| %>
-  <div class="thread">
-    <h2>Conversation between <%= User.find(thread_key[0]).first_name %> and <%= User.find(thread_key[1]).first_name %></h2>
-    <div id="myDiv<%= thread_key[0] %>_<%= thread_key[1] %>" style="height: 200px; overflow: auto;">
-    <% messages.each do |message| %>
-      <div class="message">
-        <p><%= message.body %></p>
-                <p>From: <%= message.sender.first_name %></p>
-        <p>To: <%= message.recipient.first_name %></p> 
-                          <p>Sent: <%= message.created_at.strftime("%-d %b %Y, at %-l:%M %p") %></p>
-      </div>
-    <% end %>
-  </div>
-<% end %>
 </div>
 
 
+
+
+
 </div>
+
+
+
+
+
+
+
+
+<style>
+.message.sent {
+  background-color: lightgreen;
+}
+
+.message.received {
+  background-color: lightgrey;
+}
+
+.thread {
+  margin-bottom: 20px;
+
+
+</style>
