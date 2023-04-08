@@ -5,9 +5,7 @@ Content:
 
 - edit a patient (users can only edit general notes; shows "updated_at")
 
-- edit services
 
-- edit users (add, delete)
  -->
 
 
@@ -15,8 +13,8 @@ Content:
   <!-- Main Content -->
   <div class="container my-4">
     <h1 class="text-center">Welcome to the Admin Page</h1>
-    <div class="row my-4">
-      <div class="col-md-4">
+    <div class="row my-4 mx-auto">
+      <div class="col-md-4 mt-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Patients</h5>
@@ -45,7 +43,7 @@ Content:
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 mt-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Services</h5>
@@ -58,12 +56,76 @@ Content:
 
 
       
-      <div class="col-md-4">
+      <div class="col-md-4 mt-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Service Providers</h5>
             <p class="card-text">Manage providers' accounts and permissions.</p>
-            <a href="#" class="btn btn-primary">Go to Users</a>
+
+<hr>
+<div>
+<h5>Current Providers:</h5>
+<% @users = User.order(:first_name) %>
+<ul>
+  <% @users.each do |user| %>
+    <% unless user == @current_user %>
+      <li><%= user.first_name %> <%= user.last_name %></li>
+    <% end %>
+  <% end %>
+</ul>
+</div>
+<hr>
+
+<div>
+      <h5>Add a new service provider</h5>
+				<form action="/insert_user" method="post">
+  <div class="mb-3">
+    <label for="email_box" class="form-label">Email</label>
+    <input id="email_box" name="query_email" placeholder="Choose a email..." type="text" class="form-control">
+  </div>
+                 
+  <div class="mb-3">
+    <label for="first_name_box" class="form-label">First name</label>
+      
+    <input type="text" id="first_name_box" name="query_first_name" class="form-control">
+  </div>
+         
+  <div class="mb-3">
+    <label for="last_name_box" class="form-label">Last name</label>
+      
+    <input type="text" id="last_name_box" name="query_last_name" class="form-control">
+  </div>
+    
+  <div class="mb-3">
+    <label for="password_box" class="form-label">Password</label>
+    <input id="password_box" name="query_password" placeholder="Choose a password..." type="password" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label for="password_confirmation_box" class="form-label">Password Confirmation</label>
+    <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password" class="form-control">
+        <small id="password_confirmation_box" class="form-text text-muted">The provider will be able to change the password later.</small>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Create User</button>
+</form>
+
+
+			</div>
+
+      <hr>
+
+			<div class="">
+				<h5>Delete a service provider</h5>
+				<form>
+					<div class="mb-3">
+						<label for="user_id" class="form-label">User ID</label>
+						<input type="text" class="form-control" id="user_id">
+					</div>
+					<button type="submit" class="btn btn-danger">Delete User</button>
+				</form>
+
+
           </div>
         </div>
       </div>
