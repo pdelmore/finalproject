@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   def index
     matching_services = Service.all
 
-    @list_of_services = matching_services.order({ :created_at => :desc })
+    @list_of_services = matching_services.order({ :duration => :asc })
 
     render({ :template => "services/index.html.erb" })
   end

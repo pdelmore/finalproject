@@ -1,134 +1,73 @@
-<div>
-  <div>
-    <h1>
-      List of all services
-    </h1>
+
+
+<div class="container mt-5">
+<div class="row">
+  <div class="col-lg-6 text-center mt-3">
+  <h4 class="mb-4">Add new service</h4>
+  <div class="col-lg-6 offset-lg-3">
+         <form action="/insert_service" method="post" class="needs-validation">
+        <div class="mb-3">
+          <label for="title_box" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title_box" name="query_title" required>
+        </div>
+        <div class="mb-3">
+          <label for="duration_box" class="form-label">Duration</label>
+          <input type="text" class="form-control" id="duration_box" name="query_duration" required>
+        </div>
+        <div class="mb-3">
+          <label for="coverage_box" class="form-label">Coverage</label>
+          <input type="text" class="form-control" id="coverage_box" name="query_coverage" required>
+        </div>
+        <div class="mb-3">
+          <label for="price_box" class="form-label">Price</label>
+          <input type="text" class="form-control" id="price_box" name="query_price" required>
+        </div>
+        <button class="btn btn-primary mb-5" type="submit">Create service</button>
+      </form>
   </div>
+  </div>
+
+
+
+
+
+<div class="col-lg-6 mt-5">
+<div class="accordion col-lg-8 offset-lg-2" id="servicesAccordion">
+<h4 class="mb-3">Current services:</h4>
+  <% @list_of_services.each do |a_service| %>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="service-<%= a_service.id %>-heading">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service-<%= a_service.id %>-collapse" aria-expanded="false" aria-controls="service-<%= a_service.id %>-collapse">
+          <%= a_service.duration %> min <%= a_service.title %> (<%= a_service.coverage %>)
+        </button>
+      </h2>
+
+      <div id="service-<%= a_service.id %>-collapse" class="accordion-collapse collapse" aria-labelledby="service-<%= a_service.id %>-heading" data-bs-parent="#servicesAccordion">
+        <div class="accordion-body">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>Coverage</td>
+                <% if a_service.coverage == "cash" %>
+                <td>Self-pay</td>
+                <% elsif a_service.coverage == "ins-full" %>
+                <td>Insurance - full coverage</td>
+                <% else %>
+                <td>Insurance - discounted</td>
+                <% end %>
+              </tr>
+              <tr>
+                <td>Price</td>
+                <td>$<%= a_service.price %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
-<hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new service
-    </h2>
-
-    <form action="/insert_service" method="post">
-      <div>
-        <label for="title_box">
-          Title
-        </label>
-
-        <input type="text" id="title_box" name="query_title">
-      </div>
-
-      <div>
-        <label for="duration_box">
-          Duration
-        </label>
-
-        <input type="text" id="duration_box" name="query_duration">
-      </div>
-
-      <div>
-        <label for="coverage_box">
-          Coverage
-        </label>
-
-        <input type="text" id="coverage_box" name="query_coverage">
-      </div>
-
-      <div>
-        <label for="price_box">
-          Price
-        </label>
-
-        <input type="text" id="price_box" name="query_price">
-      </div>
-
-      <button>
-        Create service
-      </button>
-    </form>
-  </div>
 </div>
-
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Title
-        </th>
-
-        <th>
-          Duration
-        </th>
-
-        <th>
-          Coverage
-        </th>
-
-        <th>
-          Price
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_services.each do |a_service| %>
-      <tr>
-        <td>
-          <%= a_service.id %>
-        </td>
-
-        <td>
-          <%= a_service.title %>
-        </td>
-
-        <td>
-          <%= a_service.duration %>
-        </td>
-
-        <td>
-          <%= a_service.coverage %>
-        </td>
-
-        <td>
-          <%= a_service.price %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_service.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_service.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/services/<%= a_service.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
 </div>
-
-<hr>
+</div>
