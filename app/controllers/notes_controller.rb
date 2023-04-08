@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  NOTES_PER_PAGE = 10
+  # NOTES_PER_PAGE = 10
 
   def index
     matching_notes = Note.all
