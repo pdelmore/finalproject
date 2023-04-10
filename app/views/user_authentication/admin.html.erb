@@ -12,7 +12,7 @@ Check:
     <h1 class="text-center">Welcome to the Admin Page</h1>
     <div class="row my-4 mx-auto">
       <div class="col-md-4 mt-3">
-        <div class="card">
+        <div class="card bg-dark">
           <div class="card-body">
             <h5 class="card-title">Patients</h5>
             <p class="card-text">You can add a new patient here:</p>
@@ -41,7 +41,7 @@ Check:
         </div>
       </div>
       <div class="col-md-4 mt-3">
-        <div class="card">
+        <div class="card bg-dark">
           <div class="card-body">
             <h5 class="card-title">Services</h5>
             <p class="card-text">Manage the services provided by your organization.</p>
@@ -53,7 +53,7 @@ Check:
 
 
       <div class="col-md-4 mt-3">
-        <div class="card">
+        <div class="card text-white bg-dark">
           <div class="card-body">
             <h5 class="card-title">Service Providers</h5>
             <p class="card-text">Manage providers' accounts and permissions.</p>
@@ -126,7 +126,7 @@ Check:
     </div>
 
 
-
+<!-- doesn't work -->
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingThree">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -135,10 +135,10 @@ Check:
       </h2>
       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          				<form>
+          				<form action="/delete_user">
 					<div class="mb-3">
-						<label for="user_id" class="form-label">User ID</label>
-						<input type="text" class="form-control" id="user_id">
+						<label for="email" class="form-label">Service provider's email</label>
+						<input type="text" class="form-control" id="email" name="email">
 					</div>
 					<button type="submit" class="btn btn-danger">Delete User</button>
 				</form>

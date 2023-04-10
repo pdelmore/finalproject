@@ -1,18 +1,28 @@
 <div class="container">
   <div>
 
-      <div class="pt-4">
-        <a href="/notes">
-          Go back
-        </a>
-      </div>
 
-      <div>
-        <a href="/delete_note/<%= @the_note.id %>">
+
+<div class="row">
+  <div class="col-6">
+    <div class="mb-3 mt-3">
+      <a href="/patients" class="btn btn btn-secondary btn-sm">
+        Go back
+      </a>
+    </div>
+  </div>
+  
+  <div class="col-6">
+    <% if @current_user.admin == true %>
+      <div class="text-end mb-3 mt-3">
+        <a href="/delete_note/<%= @the_note.id %>" class="btn btn-outline-danger mb-3">
           Delete note
         </a>
       </div>
-    </div>
+    <% end %>
+  </div>
+</div>
+
 
 
 
@@ -51,16 +61,30 @@
     <!-- Added On -->
     <div class="row mb-3">
       <div class="col-sm-3 fw-bold">Note added on:</div>
-      <div class="col-sm-9">April 8, 2023 at 3:00 PM</div>
+      <div class="col-sm-9"><%= @the_note.created_at.strftime("%B %e, %Y at %l:%M %p") %></div>
     </div>
+
+        <!-- If edited -->
+        <% if @the_note.created_at != @the_note.updated_at %>
+    <div class="row mb-3">
+      <div class="col-sm-3 fw-bold">Edited on:</div>
+      <div class="col-sm-9"><%= @the_note.updated_at.strftime("%B %e, %Y at %l:%M %p") %></div>
+    </div>
+    <% end %>
 
     <!-- Edit Note Body, needs to make it work -->
     <div class="row mb-3">
-      <div class="col-sm-3 fw-bold">Edit your note here:</div>
-      <div class="col-sm-9"><textarea class="form-control"><%= @the_note.body %></textarea></div>
+      <div class="col-sm-3 fw-bold">
+      <label for="body_box" class="form-label">Edit your note here:</label>
+      </div>
+      <div class="col-sm-9">
+      <form action="/modify_note/<%= @the_note.id %>" method="post">
+      <textarea type="text" id="body_box" name="query_body" class="form-control" rows="5"><%= @the_note.body %></textarea>
+      </div>
     </div>
 
-    <button class="btn btn-primary">Save Changes</button>
+    <button class="btn btn-primary mb-4">Save Changes</button>
+    </form>
     
   </div>
 
@@ -74,7 +98,7 @@
 
       <div class="mb-3">
         <label for="body_box" class="form-label">Body</label>
-        <input type="text" id="body_box" name="query_body" value="<%= @the_note.body %>" class="form-control">
+        <textarea type="text" id="body_box" name="query_body" class="form-control" rows="5"><%= @the_note.body %></textarea>
       </div>
 
       <div class="mb-3">

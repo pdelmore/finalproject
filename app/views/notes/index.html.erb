@@ -9,7 +9,7 @@
 
     <div class="gap-2">
   <a href="/new_note">
-  <button class="btn btn-lg btn-dark" type="button">
+  <button class="btn btn-lg btn-light" type="button">
   Add new note
   </button>
   </a>
@@ -24,7 +24,7 @@
       <div>
         <table class="table table-hover table-striped table-fixed">
           <thead>
-            <tr class="table-active text-center">
+            <tr class="table-secondary text-center">
               <th scope="row">
                 Date
               </th>
@@ -52,7 +52,7 @@
 
           <tbody>
             <% @notes.each do |a_note| %>
-              <tr class="table-secondary">
+              <tr class="">
                 <td>
                   <%= a_note.date.strftime("%b %d, %Y") %>
                 </td>
@@ -66,7 +66,10 @@
                 </td>
 
                 <td>
-                  <%= a_note.body.truncate(110, separator: ' ') %>
+                <%= a_note.body.truncate(110, separator: ' ') %> 
+                <% if a_note.user.id == @current_user.id %>
+                  <span class="badge rounded-pill bg-secondary">Your note</span>
+                  <% end %>
                 </td>
 
                 <td>

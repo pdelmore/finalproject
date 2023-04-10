@@ -13,13 +13,27 @@
  *= require_self
  */
 
+ @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
  body {
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1366' height='768' preserveAspectRatio='none' viewBox='0 0 1366 768'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1004%26quot%3b)' fill='none'%3e%3crect width='1366' height='768' x='0' y='0' fill='rgba(21%2c 67%2c 96%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c386.899C92.016%2c396.091%2c192.233%2c470.164%2c269.802%2c419.821C347.451%2c369.426%2c329.814%2c250.161%2c349.915%2c159.801C365.816%2c88.32%2c381.011%2c19.052%2c375.195%2c-53.945C369.052%2c-131.054%2c360.158%2c-210.209%2c315.409%2c-273.304C268.383%2c-339.61%2c199.439%2c-390.739%2c121.055%2c-412.277C43.325%2c-433.636%2c-38.898%2c-418.223%2c-114.973%2c-391.564C-188.29%2c-365.872%2c-255.887%2c-324.407%2c-303.924%2c-263.351C-350.66%2c-203.948%2c-374.567%2c-130.028%2c-380.052%2c-54.643C-385.293%2c17.388%2c-357.251%2c84.18%2c-334.19%2c152.62C-308.415%2c229.114%2c-303.346%2c322.832%2c-237.25%2c369.168C-170.971%2c415.632%2c-80.542%2c378.853%2c0%2c386.899' fill='%23123851'%3e%3c/path%3e%3cpath d='M1366 1417.245C1484.786 1404.662 1579.945 1317.4009999999998 1665.52 1234.062 1738.963 1162.538 1792.854 1074.163 1819.843 975.263 1844.143 886.219 1804.354 796.263 1810.1309999999999 704.144 1817.952 579.436 1914.3780000000002 452.572 1859.6689999999999 340.233 1805.561 229.12800000000004 1663.46 193.58399999999995 1544.753 159.22199999999998 1426.387 124.95899999999995 1295.375 94.048 1182.872 144.322 1073.627 193.14 1042.17 329.074 963.298 419.056 883.807 509.745 751.896 559.116 717.883 674.815 682.815 794.104 728.019 922.706 782.361 1034.539 835.849 1144.614 920.3779999999999 1235.046 1022.72 1302.154 1125.73 1369.7 1243.504 1430.221 1366 1417.245' fill='%23184e6f'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1004'%3e%3crect width='1366' height='768' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  background-size: cover;
+  background-color: #15435F;
+
 }
 
+
+.logo-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: xx-large;
+}
+
+
+.nav-link {
+  font-size: large;
+}
 
 
 .flickr_pagination {
@@ -33,15 +47,15 @@
   .flickr_pagination .current {
     font-style: normal;
     font-weight: bold;
-    color: #40e0d0; }
+    color: #cecbba; }
   .flickr_pagination a {
     border: 1px solid #dddddd;
-    color: #0063dc;
+    color: #ffffff;
     text-decoration: none; }
     .flickr_pagination a:hover, .flickr_pagination a:focus {
       border-color: #003366;
-      background: #0063dc;
-      color: white; }
+      background: #f8f8f8;
+      color: rgb(67, 67, 67); }
   .flickr_pagination .page_info {
     color: #aaaaaa;
     padding-top: 0.8em; }

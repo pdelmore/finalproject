@@ -11,7 +11,7 @@
       <%= will_paginate @patients, class: "flickr_pagination" %>
         <table class="table table-hover table-striped table-fixed">
           <thead>
-            <tr class="table-active">
+            <tr class="table-secondary">
 
               <th scope="col">
                 First name
@@ -36,7 +36,7 @@
 
           <tbody>
             <% @patients.each do |a_patient| %>
-              <tr  class="table-secondary">
+              <tr  class="">
 
                 <td>
                   <%= a_patient.first_name %>
@@ -81,5 +81,3 @@
 
   </div>
 </div>
-
-

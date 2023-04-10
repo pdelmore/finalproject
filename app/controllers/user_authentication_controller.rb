@@ -84,5 +84,15 @@ class UserAuthenticationController < ApplicationController
     
     redirect_to("/", { :notice => "User account cancelled" })
   end
+
+
+  def delete_user
+    email = params.fetch("email")
+    the_user = User.where({ :email => email }).at(0)
+
+    the_user.destroy
+
+    redirect_to("/admin", { :notice => "Service provider deleted successfully."} )
+  end
  
 end

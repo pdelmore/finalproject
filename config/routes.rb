@@ -104,6 +104,8 @@ get("/admin", { :controller => "user_authentication", :action => "admin" })
   # DELETE RECORD
   get("/cancel_user_account", { :controller => "user_authentication", :action => "destroy" })
 
+  get("/delete_user", { :controller => "user_authentication", :action => "delete_user" })
+
   # ------------------------------
 
   # SIGN IN FORM
