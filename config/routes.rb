@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-root "notes#index"
+root "user_authentication#homepage"
 
 get("/my_calendar", { :controller => "notes", :action => "calendar" })
 
