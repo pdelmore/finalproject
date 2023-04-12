@@ -46,15 +46,12 @@
               <th scope="col">
                 Last provider
               </th>
-
-              <th scope="col">
-              </th>
             </tr>
           </thead>
 
           <tbody>
             <% @patients.each do |a_patient| %>
-              <tr  class="">
+              <tr  class="clickable" onclick="window.location='/patients/<%= a_patient.id %>';">
 
                 <td>
                   <%= a_patient.first_name %>
@@ -84,12 +81,6 @@
                     no provider to display
                   </td>
                 <% end %>
-
-                <td>
-                  <a href="/patients/<%= a_patient.id %>">
-                    Show details
-                  </a>
-                </td>
               </tr>
             <% end %>
           </tbody>
@@ -99,3 +90,20 @@
 
   </div>
 </div>
+
+
+
+<style>
+  tr.clickable {
+    cursor: pointer;
+  }
+  tr.clickable:hover {
+    background-color: #133851;
+    color: black;
+  }
+
+  tr, td, th {
+    text-align: center;
+    padding: 10px;
+  }
+</style>
