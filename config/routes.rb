@@ -6,6 +6,12 @@ get("/my_calendar", { :controller => "notes", :action => "calendar" })
 
 get("/admin", { :controller => "user_authentication", :action => "admin" })
 
+get("/chatbot", { :controller => "notes", :action => "chatbot" })
+
+post("/gpt", { :controller => "notes", :action => "gpt" })
+
+get("/chatbot/results", { :controller => "notes", :action => "gpt" })
+
   # Routes for the Note resource:
 
   # CREATE

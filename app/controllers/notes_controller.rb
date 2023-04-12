@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   # NOTES_PER_PAGE = 10
 
+
   def index
     matching_notes = Note.all
 
@@ -98,4 +99,56 @@ class NotesController < ApplicationController
 
     render({ :template => "notes/my_calendar.html.erb" })
   end
+
+
+def chatbot
+
+render({ :template => "notes/chatbot.html.erb" })
+end
+
+
+
+def gpt
+  Rails.logger.debug("gpt action called")
+  conversation_history = params[:prompt]
+
+
+  require "openai"
+  
+
+  # The fun part
+
+  client = OpenAI::Client.new(access_token: ENV.fetch("OPENAI_KEY"))
+
+  openai_client = OpenAI::Client.new(
+    access_token: ENV.fetch("OPENAI_KEY"),
+  )
+
+  response = openai_client.chat(
+    parameters: {
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: "You are a licensed massage therapist with a lot of experience that will help the user, less experienced massage therapist, come up with a basic session plan for their massage sessions.
+        Ask any clarifying questions needed about the patient health history, make sure that there are no contraindications to perform the massage, ask about the condition that the patient wants the massage for, and create a plan for the massage session today or a long-term plan. Also include any take-home exercises or self-care tips that you think are needed. Make sure to tell the user that you're only giving general recommendations and that you're not giving a medical advice or treatment. Keep your advice shorter than 500 words. The user's patient is the one getting a massage, not the user themselves." },
+        { role: "user", content: conversation_history },
+      ],
+      temperature: 0.8,
+    },
+  )
+
+
+  if response.respond_to?(:choices) && response.choices.present?
+    @result = response.choices[0].text.strip
+  else
+    @result = "Sorry, I could not generate a response. Please try again."
+    Rails.logger.error("OpenAI API error: #{response.inspect}")
+  end
+
+
+
+  @result = response.fetch("choices").at(0).fetch("message").fetch("content")
+
+  render({ :template => "notes/chatbot_response.html.erb" })
+end
+
 end
