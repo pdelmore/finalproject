@@ -23,4 +23,5 @@ class Patient < ApplicationRecord
 
   has_many :services, { :through => :notes, :source => :service }
 
+
 end

@@ -87,4 +87,21 @@ class PatientsController < ApplicationController
 
     render({ :template => "patients/new.html.erb" })
   end
+
+
+  def last_session_coverage
+    the_id = params.fetch("path_id")
+
+    matching_patients = Patient.where({ :id => the_id })
+
+    @the_patient = matching_patients.at(0)
+
+    last_session = @the_patient.notes.order(:created_at => :desc).first
+
+    last_coverage = last_session.services.coverage
+
+    return last_coverage
+
+
+  end
 end
