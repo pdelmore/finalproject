@@ -24,4 +24,12 @@ class Patient < ApplicationRecord
   has_many :services, { :through => :notes, :source => :service }
 
 
+  def self.search(query)
+    if query.present?
+      where("first_name LIKE :query OR last_name LIKE :query", query: "%#{query}%")
+    else
+      all
+    end
+  end
+
 end

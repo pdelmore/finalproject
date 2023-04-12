@@ -12,9 +12,21 @@
 
 
     <div class="col-lg-10 col-md-12 mx-auto py-4">
+<div class="form-floating col-lg-4 mb-2 row">
+  <%= form_tag patients_path, method: :get, class: 'form-floating form-inline' do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search for a patient", class: 'form-control' %>
+        <%= label_tag :search, "Search for a patient", class: "" %>
+
+<%= submit_tag "Search", class: 'btn btn-outline-success', type: 'submit' %>
+
+  <% end %>
+  </div>
 
       <div>
+
       <%= will_paginate @patients, class: "flickr_pagination" %>
+
+
         <table class="table table-hover table-striped table-fixed">
           <thead>
             <tr class="table-secondary">
