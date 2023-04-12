@@ -44,15 +44,12 @@
               <th scope="row">
                 Provider
               </th>
-
-              <th scope="row">
-              </th>
             </tr>
           </thead>
 
           <tbody>
             <% @notes.each do |a_note| %>
-              <tr class="">
+              <tr  class="clickable" onclick="window.location='/notes/<%= a_note.id %>';">
                 <td>
                   <%= a_note.date.strftime("%b %d, %Y") %>
                 </td>
@@ -74,12 +71,6 @@
 
                 <td>
                   <%= a_note.user.first_name %>
-                </td>
-
-                <td>
-                  <a href="/notes/<%= a_note.id %>">
-                    Show details
-                  </a>
                 </td>
               </tr>
             <% end %>

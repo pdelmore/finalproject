@@ -11,7 +11,7 @@
 
 
 <div class="row">
-<div class="col-lg-4">
+<div class="col-lg-4 my-2">
   <%= form_tag patients_path, method: :get, class: 'form-group input-group' do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search for a patient", class: 'form-control' %>
         <div class="input-group-append">
@@ -90,20 +90,3 @@
 
   </div>
 </div>
-
-
-
-<style>
-  tr.clickable {
-    cursor: pointer;
-  }
-  tr.clickable:hover {
-    background-color: #133851;
-    color: black;
-  }
-
-  tr, td, th {
-    text-align: center;
-    padding: 10px;
-  }
-</style>

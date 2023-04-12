@@ -42,6 +42,20 @@ margin: 0;
 }
 
 
+tr.clickable {
+  cursor: pointer;
+}
+tr.clickable:hover {
+  background-color: #133851;
+  color: black;
+}
+
+tr, td, th {
+  text-align: center;
+  padding: 10px;
+}
+
+
 .flickr_pagination {
   text-align: center;
   padding: 0.3em;
