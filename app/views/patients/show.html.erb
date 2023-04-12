@@ -1,22 +1,85 @@
 <div class="container">
-    <div class="mb-3 mt-3">
-        <a href="javascript:history.back()" class="btn btn btn-secondary btn-sm">
-          Go back
-        </a>
+
+<div class="row">
+  <div class="col-6">
+    <div class="mt-3">
+      <a href="javascript:history.back()" class="btn btn btn-secondary btn-sm">
+        Go back
+      </a>
     </div>
-
-
-<div class="">
-    <h3 class="text-center mb-5">
-      Patient: <%= @the_patient.first_name %> <%= @the_patient.last_name %>
-    </h3>
-          <% if @current_user.admin == true %>
-      <div>
+  </div>
+  
+  <div class="col-6">
+    <% if @current_user.admin == true %>
+      <div class="text-end mt-3">
         <a href="/delete_patient/<%= @the_patient.id %>" class="btn btn-outline-danger mb-3">
           Delete patient
         </a>
       </div>
-      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+    <h3 class="text-center mb-3">
+      Patient: <%= @the_patient.first_name %> <%= @the_patient.last_name %>
+    </h3>
+
+
+
+  <% if @current_user.admin == true %>
+<div class="accordion col-lg-2 col-sm-6 mx-auto mb-5" id="patientAccordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="patientAccordionHeading">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#patientAccordionCollapse" aria-expanded="true" aria-controls="patientAccordionCollapse">
+          Edit patient
+        </button>
+      </h2>
+
+      <div id="patientAccordionCollapse" class="accordion-collapse collapse" aria-labelledby="patientAccordionHeading" data-bs-parent="#patientAccordion">
+        <div class="accordion-body">
+          <form action="/modify_patient/<%= @the_patient.id %>" method="post">
+            <div class="mb-3">
+              <label for="first_name_box" class="form-label">First name</label>
+              <input type="text" class="form-control" id="first_name_box" name="query_first_name" value="<%= @the_patient.first_name %>">
+            </div>
+
+            <div class="mb-3">
+              <label for="last_name_box" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="last_name_box" name="query_last_name" value="<%= @the_patient.last_name %>">
+            </div>
+
+            <div class="mb-3">
+              <label for="address_box" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address_box" name="query_address" value="<%= @the_patient.address %>">
+            </div>
+
+            <div class="mb-3">
+              <label for="phone_number_box" class="form-label">Phone number</label>
+              <input type="text" class="form-control" id="phone_number_box" name="query_phone_number" value="<%= @the_patient.phone_number %>">
+            </div>
+
+            <div class="mb-3">
+              <label for="general_notes_box" class="form-label">General notes</label>
+              <textarea class="form-control textarea-autosize" id="general_notes_box" name="query_general_notes"><%= @the_patient.general_notes %></textarea
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update patient</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  <% else %>
+
+   <div class="m-4">
+    <p class="text-muted text-center">It looks like you're not an admin, so you can't edit this patient. If you would like to request changes to this patient information, please reach out to <%= @admin.first_name %> <%= @admin.last_name %>.</p>
+  </div>
+<% end %>
+</div>
+</div>
+
+
+
 
   <div class="row">
     <div class="col-md-6">
@@ -49,63 +112,8 @@
 
 
 
-<div class="accordion" id="patientAccordion">
-  <% if @current_user.admin == true %>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="patientAccordionHeading">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#patientAccordionCollapse" aria-expanded="true" aria-controls="patientAccordionCollapse">
-          Edit patient
-        </button>
-      </h2>
-
-      <div id="patientAccordionCollapse" class="accordion-collapse collapse show" aria-labelledby="patientAccordionHeading" data-bs-parent="#patientAccordion">
-        <div class="accordion-body">
-          <form action="/modify_patient/<%= @the_patient.id %>" method="post">
-            <div class="mb-3">
-              <label for="first_name_box" class="form-label">First name</label>
-              <input type="text" class="form-control" id="first_name_box" name="query_first_name" value="<%= @the_patient.first_name %>">
-            </div>
-
-            <div class="mb-3">
-              <label for="last_name_box" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="last_name_box" name="query_last_name" value="<%= @the_patient.last_name %>">
-            </div>
-
-            <div class="mb-3">
-              <label for="address_box" class="form-label">Address</label>
-              <input type="text" class="form-control" id="address_box" name="query_address" value="<%= @the_patient.address %>">
-            </div>
-
-            <div class="mb-3">
-              <label for="phone_number_box" class="form-label">Phone number</label>
-              <input type="text" class="form-control" id="phone_number_box" name="query_phone_number" value="<%= @the_patient.phone_number %>">
-            </div>
-
-            <div class="mb-3">
-              <label for="general_notes_box" class="form-label">General notes</label>
-              <input type="text" class="form-control textarea-autosize" id="general_notes_box" name="query_general_notes" value="<%= @the_patient.general_notes %>">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Update patient</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  <% else %>
-
-   <div class="m-4">
-    <p class="text-muted text-center">It looks like you're not an admin, so you can't edit this patient. If you would like to request changes to this patient information, please reach out to <%= @admin.first_name %> <%= @admin.last_name %>.</p>
-  </div>
-<% end %>
-</div>
-
-
-
-
-
-
 <div>
-<h3 class="text-center mb-3">Patient's notes</h3>
+<h3 class="text-center mb-3 mt-5">Patient's notes</h3>
 
 <div>
 <%= will_paginate @matching_notes, class: "flickr_pagination" %>
