@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_05_165928) do
+ActiveRecord::Schema.define(version: 2023_04_12_165655) do
 
   create_table "messages", force: :cascade do |t|
     t.integer "sender_id"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2023_04_05_165928) do
     t.text "general_notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "gender"
+    t.date "dob"
   end
 
   create_table "services", force: :cascade do |t|

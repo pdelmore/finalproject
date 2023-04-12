@@ -4,7 +4,9 @@
 #
 #  id            :integer          not null, primary key
 #  address       :string
+#  dob           :date
 #  first_name    :string
+#  gender        :string
 #  general_notes :text
 #  last_name     :string
 #  phone_number  :string

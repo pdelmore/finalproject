@@ -5,7 +5,7 @@ class PatientsController < ApplicationController
     @list_of_patients = matching_patients.order({ :created_at => :desc })
 
 
-      @patients = @list_of_patients.search(params[:search]).paginate(page: params[:page], per_page: 20)
+      @patients = @list_of_patients.search(params[:search]).paginate(page: params[:page], per_page: 10)
   
 
     render({ :template => "patients/index.html.erb" })
