@@ -8,7 +8,7 @@
 
 <ul class="text-start">
 <li>Be as descriptive as possible - include any conditions, medications, surgeries and anything else you can think of </li>
-<li>If you are not astisfied with the generated response, you can always go back, edit your prompt and try again </li>
+<li>If you are not satisfied with the generated response, you can always go back, edit your prompt and try again </li>
 <li>Be patient! MassageMentorAI wants to provide you with the best recommendation possible, so generating the response may take up to a minute or so.</li>
 <ul>
 
@@ -18,11 +18,11 @@
 
   <div class="mb-3">
 
-    <textarea id="prompt" name="prompt" class="form-control" rows="15" cols="30"></textarea>
+    <textarea id="prompt" name="prompt" class="form-control" rows="8" cols="30" style="font-size: 20px;"></textarea>
   </div>
 
   <button class="btn btn-primary" type="submit">Submit!</button>
-<div id="loadingText"></div>
+<div id="loadingText" class="mt-2"></div>
 </form>
 
 
@@ -30,10 +30,11 @@
 
 
 
+
 <script>
 function loadLink() {
   // Display buffering image
-  document.getElementById("loadingText").innerHTML = "Loading...";
+  document.getElementById("loadingText").innerHTML = "MassageMentorAI is generating the response...";
   // Return true to submit the form
   return true;
 }
