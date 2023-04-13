@@ -1,14 +1,20 @@
 
-<div class="container">
+<div class="container text-center">
 
+<div class="mb-5">
 <h1>Prompt</h1>
+<p>Instructions</p>
+</div>
 
-<form action="/chatbot/results">
-  <label for="prompt">Tell me a little about the patient</label>
+<form action="/chatbot/results" class="needs-validation" novalidate>
 
-  <textarea id="prompt" type="text" name="prompt"></textarea>
+  <div class="mb-3">
 
-  <button>Sumbit!</button>
+    <textarea id="prompt" name="prompt" class="form-control" rows="15" cols="30"></textarea>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Submit!</button>
+
 </form>
 
 
