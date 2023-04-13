@@ -27,6 +27,106 @@
 
 
 
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Personal Information</h5>
+        </div>
+        <div class="card-body">
+                  <p><strong>Sex:</strong> <%= @the_patient.gender %></p>
+          <p><strong>Date of birth:</strong> <%= @the_patient.dob %></p>
+          <p><strong>Address:</strong> <%= @the_patient.address %></p>
+          <p><strong>Phone number:</strong> <%= @the_patient.phone_number %></p>
+
+
+   <% last_session = @the_patient.services.order(:created_at => :desc).first %>
+    <% last_coverage = last_session.coverage %>
+    <% if last_coverage == "cash" %>
+      <p><strong>Coverage:</strong> Self-pay</p>
+<% elsif last_coverage == "ins-full" %>
+      <p><strong>Coverage:</strong> Insurance (full)</p>
+<% else %>
+<p><strong>Coverage:</strong> Insurance (partial)</p>
+    <% end %>
+          <p><strong>Added:</strong> <%= time_ago_in_words(@the_patient.created_at) %> ago</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mt-3">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">General Notes</h5>
+        </div>
+        <div class="card-body">
+          <p><%= @the_patient.general_notes %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div>
+<h3 class="text-center mb-3 mt-5">Patient's notes</h3>
+
+<div>
+<%= will_paginate @matching_notes, class: "flickr_pagination" %>
+      </div>
+
+      <div class="container">
+        <table class="table table-hover table-striped table-fixed">
+          <thead>
+            <tr class="table-secondary text-center">
+              <th scope="row">
+                Date
+              </th>
+
+              <th scope="row">
+                Service
+              </th>
+
+              <th scope="row">
+                Note
+              </th>
+
+              <th scope="row">
+                Provider
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @matching_notes.each do |a_note| %>
+              <tr class="clickable" onclick="window.location='/notes/<%= a_note.id %>';">
+                <td>
+                  <%= a_note.date.strftime("%b %d, %Y") %>
+                </td>
+
+                <td>
+                 <%= a_note.service.duration %> min <%= a_note.service.title %>
+                </td>
+
+                <td>
+                  <%= a_note.body.truncate(110, separator: ' ') %>
+                </td>
+
+                <td>
+                 <%= a_note.user.first_name %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+
+
+
   <% if @current_user.admin == true %>
 <div class="accordion col-lg-3 col-sm-6 mx-auto mb-5" id="patientAccordion">
     <div class="accordion-item">
@@ -77,117 +177,6 @@
 <% end %>
 </div>
 </div>
-
-
-
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h5 class="card-title">Personal Information</h5>
-        </div>
-        <div class="card-body">
-                  <p><strong>Sex:</strong> <%= @the_patient.gender %></p>
-          <p><strong>Date of birth:</strong> <%= @the_patient.dob %></p>
-          <p><strong>Address:</strong> <%= @the_patient.address %></p>
-          <p><strong>Phone number:</strong> <%= @the_patient.phone_number %></p>
-
-
-   <% last_session = @the_patient.services.order(:created_at => :desc).first %>
-    <% last_coverage = last_session.coverage %>
-    <% if last_coverage == "cash" %>
-      <p><strong>Coverage:</strong> Self-pay</p>
-<% elsif last_coverage == "ins-full" %>
-      <p><strong>Coverage:</strong> Insurance (full)</p>
-<% else %>
-<p><strong>Coverage:</strong> Insurance (partial)</p>
-    <% end %>
-          <p><strong>Added:</strong> <%= time_ago_in_words(@the_patient.created_at) %> ago</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h5 class="card-title">General Notes</h5>
-        </div>
-        <div class="card-body">
-          <p><%= @the_patient.general_notes %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-<div>
-<h3 class="text-center mb-3 mt-5">Patient's notes</h3>
-
-<div>
-<%= will_paginate @matching_notes, class: "flickr_pagination" %>
-      </div>
-
-      <div class="container">
-        <table class="table table-hover table-striped table-fixed">
-          <thead>
-            <tr class="table-secondary text-center">
-              <th scope="row">
-                Date
-              </th>
-
-              <th scope="row">
-                Service
-              </th>
-
-              <th scope="row">
-                Note
-              </th>
-
-              <th scope="row">
-                Provider
-              </th>
-
-              <th scope="row">
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @matching_notes.each do |a_note| %>
-              <tr class="">
-                <td>
-                  <%= a_note.date.strftime("%b %d, %Y") %>
-                </td>
-
-                <td>
-                 <%= a_note.service.duration %> min <%= a_note.service.title %>
-                </td>
-
-                <td>
-                  <%= a_note.body.truncate(110, separator: ' ') %>
-                </td>
-
-                <td>
-                 <%= a_note.user.first_name %>
-                </td>
-
-                <td>
-                  <a href="/notes/<%= a_note.id %>">
-                    Show details
-                  </a>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-      </div>
-
     </div>
 
 
