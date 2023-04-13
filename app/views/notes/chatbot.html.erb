@@ -3,11 +3,18 @@
 
 <div class="mb-5">
 <h3 class="mt-2">Do you need help designing a plan for your sessions?</h3>
-<p class="mt-4">Now you can ask AI to help you identify any contraindications and recommend a basic plan for your session.</p>
-<p>Please, remember that this does not a replacement for medical advice.</p>
+<p class="mt-2">Now you can ask MassageMentorAI to help you identify any contraindications and recommend a basic plan for your session.</p>
+<p class="text-start">Helpful tips:</p>
+
+<ul class="text-start">
+<li>Be as descriptive as possible - include any conditions, medications, surgeries and anything else you can think of </li>
+<li>If you are not astisfied with the generated response, you can always go back, edit your prompt and try again </li>
+<li>Be patient! MassageMentorAI wants to provide you with the best recommendation possible, so generating the response may take up to a minute or so.</li>
+<ul>
+
 </div>
 
-<form action="/chatbot/results" class="needs-validation" novalidate>
+<form action="/chatbot/results" onsubmit="return loadLink()" class="needs-validation" novalidate>
 
   <div class="mb-3">
 
@@ -15,8 +22,19 @@
   </div>
 
   <button class="btn btn-primary" type="submit">Submit!</button>
-
+<div id="loadingText"></div>
 </form>
 
 
 </div>
+
+
+
+<script>
+function loadLink() {
+  // Display buffering image
+  document.getElementById("loadingText").innerHTML = "Loading...";
+  // Return true to submit the form
+  return true;
+}
+</script>
