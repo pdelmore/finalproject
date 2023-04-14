@@ -3,8 +3,8 @@ class PromptsController < ApplicationController
 
   def index
     matching_prompts = Prompt.all
-
-    @list_of_prompts = matching_prompts.order({ :created_at => :desc })
+    list_of_prompts = matching_prompts.order({ :created_at => :desc })
+    @user_prompts = list_of_prompts.where({ :user_id => @current_user.id })
 
     render({ :template => "prompts/index.html.erb" })
   end
@@ -22,6 +22,7 @@ class PromptsController < ApplicationController
   def create
     a_prompt = Prompt.new
     a_prompt.topic = params.fetch("query_topic")
+    a_prompt.user_id = @current_user.id
 
     if a_prompt.valid?
       a_prompt.save
