@@ -1,76 +1,90 @@
+<div class="container text-center">
+  <div class="mb-5">
+    <h3 class="mt-2">Do you need help designing a plan for your sessions?</h3>
+    <p class="mt-2">Now you can ask MassageMentorAI to help you identify any contraindications and recommend a basic plan for your session.</p>
+    <p class="text-start">Helpful tips:</p>
 
-<div>
-  <div>
-    <h2>
-      Add a new conversation
-    </h2>
+    <ul class="text-start">
+      <li>Be as descriptive as possible - include any conditions, medications, surgeries and anything else you can think of. </li>
+      <li>If you are not satisfied with the generated response or forgot to add something, don't worry! You can always ask a follow-up question or add additional information about the patient's medial history. </li>
+      <li>A sample prompt: <em>"60 year old male, left shoulder pain, worsens when playing golf. He's on blood thinners and had a recent right hip replacement (2019)."</em></li>
+      <ul>
 
-    <form action="/insert_prompt" method="post">
-      <div>
-        <label for="topic_box">
-          Topic
-        </label>
-
-        <input type="text" id="topic_box" name="query_topic">
       </div>
 
-      <button>
-        Create prompt
-      </button>
-    </form>
-  </div>
-</div>
+      <form action="/insert_prompt" method="post" onsubmit="return loadLink()">
+        <div class="mb-3">
 
-<hr>
-<div>
+          <textarea id="topic_box" name="query_topic" class="form-control" rows="8" cols="30" style="font-size: 20px;"></textarea>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit!</button>
+      </form>
+    </div>
+  </div>
+
+  <hr>
   <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Topic
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @user_prompts.each do |prompt| %>
+    <div>
+      <table border="1">
         <tr>
-          <td>
-            <%= prompt.id %>
-          </td>
+          <th>
+            ID
+          </th>
 
-          <td>
-            <%= prompt.topic %>
-          </td>
+          <th>
+            Topic
+          </th>
 
-          <td>
-            <%= time_ago_in_words(prompt.created_at) %> ago
-          </td>
+          <th>
+            Created at
+          </th>
 
-          <td>
-            <%= prompt.user.first_name %>
-          </td>
+          <th>
+            User
+          </th>
 
-          <td>
-            <a href="/prompts/<%= prompt.id %>">
-              Show details
-            </a>
-          </td>
+          <th>
+          </th>
         </tr>
-      <% end %>
-    </table>
+
+        <% @user_prompts.each do |prompt| %>
+          <tr>
+            <td>
+              <%= prompt.id %>
+            </td>
+
+            <td>
+              <%= prompt.topic %>
+            </td>
+
+            <td>
+              <%= time_ago_in_words(prompt.created_at) %> ago
+            </td>
+
+            <td>
+              <%= prompt.user.first_name %>
+            </td>
+
+            <td>
+              <a href="/prompts/<%= prompt.id %>">
+                Show details
+              </a>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
-</div>
+
+
+
+
+<script>
+function loadLink() {
+  // Display buffering image
+  document.getElementById("loadingText").innerHTML = "MassageMentorAI is generating the chat...";
+  // Return true to submit the form
+  return true;
+}
+</script>
