@@ -12,7 +12,7 @@
 
     <dl>
       <dt>
-        Topic
+        Prompt
       </dt>
       <dd>
         <%= @prompt.topic %>
@@ -31,7 +31,7 @@
 <hr>
 
 <dl>
-  <% Chat.where({ :prompt_id => @prompt.id }).order(:created_at).each do |message| %>
+  <% Chat.where({ :prompt_id => @prompt.id }).order(:created_at).offset(1).each do |message| %>
     <dt><%= message.role %></dt>
     <dd><%= simple_format(message.content) %></dd>
   <% end %>
