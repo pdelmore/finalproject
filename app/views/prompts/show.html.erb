@@ -55,7 +55,7 @@
           Content
         </label>
 
-        <textarea id="content_box" name="query_content" class="form-control" placeholder="Enter your patient's information..." rows="8" cols="30" style="font-size: 20px;"></textarea>
+        <textarea id="content_box" name="query_content" class="form-control" placeholder="Enter your patient's information..." rows="6" cols="25" style="font-size: 22px;"></textarea>
       </div>
 
   <button class="btn btn-primary mt-2" type="submit">Submit!</button>
@@ -64,3 +64,19 @@
   </dd>
 </dl>
 </div>
+
+
+<script>
+function loadLink() {
+  // Display buffering image
+  document.getElementById("loadingText").innerHTML = "MassageMentorAI is generating the response...";
+  // Return true to submit the form
+  return true;
+}
+
+
+
+window.addEventListener('load', function() {
+  window.scrollTo(0, document.body.scrollHeight);
+});
+</script>
