@@ -4,10 +4,6 @@ class MessagesController < ApplicationController
 
     @list_of_messages = matching_messages.order({ :created_at => :desc })
 
-    # @messages = @list_of_messages.group_by(&:thread_key)
-
-    # @messages = @list_of_messages.where("sender_id = ? OR recipient_id = ?", @current_user.id, @current_user.id).group_by(&:recipient_id)
-
     @messages = Message.where("sender_id = ? OR recipient_id = ?", @current_user.id, @current_user.id).order(:created_at)
     @threads = @messages.group_by { |message| [message.sender_id, message.recipient_id].sort }
     

@@ -1,0 +1,78 @@
+
+
+<div>
+  <div>
+    <h2>
+      Add a new conversation
+    </h2>
+
+    <form action="/insert_prompt" method="post">
+      <div>
+        <label for="topic_box">
+          Topic
+        </label>
+
+        <input type="text" id="topic_box" name="query_topic">
+      </div>
+
+      <button>
+        Create prompt
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Topic
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+
+        <th>
+        User
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_prompts.each do |prompt| %>
+      <tr>
+        <td>
+          <%= prompt.id %>
+        </td>
+
+        <td>
+          <%= prompt.topic %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(prompt.created_at) %> ago
+        </td>
+
+                <td>
+<%= prompt.user.first_name %>
+        </td>
+
+        <td>
+          <a href="/prompts/<%= prompt.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

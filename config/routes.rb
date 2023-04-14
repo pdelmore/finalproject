@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
 
+
+  get("/massagementorai", { :controller => "prompts", :action => "index" })
+
+  get("/prompts/:path_id", { :controller => "prompts", :action => "show" })
+
+  post("/insert_prompt", { :controller => "prompts", :action => "create" })
+
+
+  post("/insert_chat", { :controller => "chats", :action => "create" })
+
+
+  resources :chats
+  resources :prompts
+
+  
 root "user_authentication#homepage"
 
 get("/my_calendar", { :controller => "notes", :action => "calendar" })
