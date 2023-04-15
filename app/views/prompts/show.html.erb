@@ -1,82 +1,76 @@
 <div class="container">
 
+  <div class="row">
+    <div class="col-6">
+      <div class="mt-3 mb-4">
+        <a href="/prompts" class="btn btn btn-secondary btn-sm">
+          Go back
+        </a>
+      </div>
+    </div>
 
-    <div class="row">
-  <div class="col-6">
-    <div class="mt-3 mb-4">
-      <a href="/prompts" class="btn btn btn-secondary btn-sm">
-        Go back
-      </a>
+    <div class="col-12 mb-3">
+
+      <h2>Patient #<%= @prompt.id %></h2>
+
     </div>
   </div>
-  
-  
-  <div>
-    <h1>
-      Prompt #<%= @prompt.id %> details
-    </h1>
 
-    <dl>
-      <dt>
-        Prompt
-      </dt>
-      <dd>
-        <%= @prompt.topic %>
-      </dd>
-    </dl>
-  </div>
-</div>
+  <div class="container">
 
-
-<div class="container">
-<dl>
-  <% Chat.where({ :prompt_id => @prompt.id }).order(:created_at).offset(1).each do |message| %>
-<% if message.role == "user" %>
-    <dt><p>You</p></dt>
-    <% else %>
-      <dt><p>MassageMentorAI</p></dt>
+    <% Chat.where({ :prompt_id => @prompt.id }).order(:created_at).offset(1).each do |message| %>
+      <% if message.role == "user" %>
+        <div class="card border-success mb-3">
+          <div class="card-header">You</div>
+          <div class="card-body">
+            <p class="card-text"><%= simple_format(message.content) %></p>
+          </div>
+        </div>
+      <% else %>
+        <div class="card border-secondary mb-3">
+          <div class="card-header">MassageMentorAI</div>
+          <div class="card-body">
+            <p class="card-text"><%= simple_format(message.content) %></p>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-    <dd><%= simple_format(message.content) %></dd>
-  <% end %>
-
-  </div>
 
 
-<div class="container text-center mt-3">
-  <dt>Ask here:</dt>
-  <dd>
-    <form action="/insert_chat" method="post">
-      <input type="hidden" name="query_prompt_id" value="<%= @prompt.id %>">
+      <div class="container text-center mt-3">
+        <dt>Ask here:</dt>
+        <dd>
+          <form action="/insert_chat" method="post">
+            <input type="hidden" name="query_prompt_id" value="<%= @prompt.id %>">
 
-      <input type="hidden" id="role_box" name="query_role" value="user">
+            <input type="hidden" id="role_box" name="query_role" value="user">
 
-      <div>
-        <label for="content_box" style="display: none">
-          Content
-        </label>
+            <div>
+              <label for="content_box" style="display: none">
+                Content
+              </label>
 
-        <textarea id="content_box" name="query_content" class="form-control" placeholder="Enter your patient's information..." rows="6" cols="25" style="font-size: 22px;"></textarea>
-      </div>
+              <textarea id="content_box" name="query_content" class="form-control" placeholder="Enter your patient's information..." rows="6" cols="25" style="font-size: 22px;"></textarea>
+            </div>
 
-  <button class="btn btn-primary mt-2" type="submit">Submit!</button>
-<div id="loadingText" class="mt-2"></div>
-    </form>
-  </dd>
-</dl>
-</div>
+            <button class="btn btn-primary mt-2" type="submit">Submit!</button>
+            <div id="loadingText" class="mt-2"></div>
+          </form>
+        </dd>
+      </dl>
+    </div>
 
-
-<script>
-function loadLink() {
-  // Display buffering image
-  document.getElementById("loadingText").innerHTML = "MassageMentorAI is generating the response...";
-  // Return true to submit the form
-  return true;
-}
+    <script>
+      function loadLink() {
+        // Display buffering image
+        document.getElementById("loadingText").innerHTML = "MassageMentorAI is generating the response...";
+        // Return true to submit the form
+        return true;
+      }
 
 
 
-window.addEventListener('load', function() {
-  window.scrollTo(0, document.body.scrollHeight);
-});
-</script>
+      window.addEventListener('load', function() {
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    </script>
