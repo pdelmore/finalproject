@@ -7,8 +7,10 @@
   </div>
 
   <% calendar_patients.each do |a_session| %>
-<div class="border border-dark">
-<%= a_session.patient.first_name %> <%= a_session.patient.last_name %> | <%= a_session.service.duration %> min 
+<div>
+<a href="/patients/<%= a_session.patient.id %>" class="btn btn-outline-light btn-sm">
+<small><%= a_session.patient.first_name %> <%= a_session.patient.last_name %>
+<br><em><%= a_session.service.duration %> min</em></small></a>
 </div>
 
 <% end %>
