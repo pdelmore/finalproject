@@ -59,4 +59,12 @@ class MessagesController < ApplicationController
 
     redirect_to("/messages", { :notice => "Message deleted successfully."} )
   end
+
+
+
+  def contactus
+
+
+render teplate: 'messages/contactus.html.erb'
+  end
 end

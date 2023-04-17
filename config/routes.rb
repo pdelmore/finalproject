@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   post("/insert_chat", { :controller => "chats", :action => "create" })
 
+  get("/contact-us", { :controller => "messages", :action => "contactus" })
+
 
   resources :chats
   resources :prompts
