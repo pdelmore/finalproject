@@ -24,6 +24,14 @@
 font-size: 1rem;
 }
 
+#contact-us-button {
+transition: all .2s ease-in-out;
+}
+
+#contact-us-button:hover { 
+  transform: scale(1.2); 
+}
+
 .navbar {
   padding: 5px;
 }
