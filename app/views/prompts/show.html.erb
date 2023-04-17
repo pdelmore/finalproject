@@ -32,7 +32,7 @@
     <% end %>
 
 
-      <div class="container text-center mt-3">
+      <div class="container text-center mt-3 col-lg-8 mx-auto">
         <dd>
           <form action="/insert_chat" method="post">
             <input type="hidden" name="query_prompt_id" value="<%= @prompt.id %>">
@@ -44,7 +44,7 @@
                 Content
               </label>
 
-              <textarea id="content_box" name="query_content" class="form-control" placeholder="Ask additional questions here..." rows="6" cols="25" style="font-size: 22px;"></textarea>
+              <textarea id="content_box" name="query_content" class="form-control" placeholder="Ask additional questions here..." rows="6" cols="25" style="font-size: 18px;"></textarea>
             </div>
 
             <button class="btn btn-primary mt-2" type="submit">Submit!</button>
