@@ -30,7 +30,7 @@ transition: all .2s ease-in-out;
 }
 
 #contact-us-button:hover { 
-  transform: scale(1.3); 
+  transform: scale(1.4); 
 }
 
 .navbar {
