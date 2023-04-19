@@ -16,5 +16,5 @@ services:
         fromDatabase:
           name: carelog
           property: connectionString
-      - key: b6874b4b5781008917e29f5f8316ba5a
+      - key: RAILS_MASTER_KEY
         sync: false
