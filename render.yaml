@@ -1,12 +1,12 @@
 databases:
-  - name: CareLog
+  - name: carelog
     plan: free
-    databaseName: CareLog
-    user: CareLog
+    databaseName: carelog
+    user: carelog
 
 services:
   - type: web
-    name: CareLog
+    name: carelog
     plan: free
     env: ruby
     buildCommand: "./bin/render-build.sh"
@@ -14,7 +14,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: CareLog
+          name: carelog
           property: connectionString
       - key: b6874b4b5781008917e29f5f8316ba5a
         sync: false
