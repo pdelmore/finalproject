@@ -72,7 +72,14 @@ class PromptsController < ApplicationController
   end
 
 
+  def destroy
+    id = params.fetch("id")
+    chat = Prompt.where({ :id => id }).at(0)
 
+    chat.destroy
+
+    redirect_to("/massagementorai", { :notice => "Chat deleted successfully."} )
+  end
 
 
 
