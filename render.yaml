@@ -1,8 +1,8 @@
 databases:
-  - name: YOURAPPNAME
+  - name: CareLog
     plan: free
     databaseName: YOURAPPNAME
-    user: YOURAPPNAME
+    user: CareLog
 
 services:
   - type: web
