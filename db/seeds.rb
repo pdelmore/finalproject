@@ -26,7 +26,6 @@ User.create!(
   admin = false
 
   user = User.new(
-    id: i + 2,
     first_name: first_name,
     last_name: last_name,
     email: email,
@@ -65,7 +64,6 @@ Service.create!(
   general_notes = Faker::Lorem.sentence
 
   Patient.create!(
-    id: i + 1,
     first_name: first_name,
     last_name: last_name,
     dob: dob,
@@ -128,6 +126,9 @@ sample_messages = [
   "Noted some areas of restriction in the patient's hip and knee joints.",
 ]
 
+total_patients = Patient.count
+total_servicess = Service.count
+total_users = User.count
 # Create 150 new Notes
 # Create 200 new Notes
 300.times do
@@ -135,9 +136,9 @@ sample_messages = [
   body = sample_messages.sample(rand(3..8)).join("\n")
   date = Faker::Date.between(from: "2023-04-01", to: "2023-05-30")
   time = Faker::Time.between(from: date.to_time + 10.hours, to: date.to_time + 19.hours)
-  patient_id = rand(1..50)
-  service_id = rand(1..7)
-  user_id = rand(1..10)
+  patient_id = rand(1..total_patients)
+  service_id = rand(1..total_services)
+  user_id = rand(1..total_users)
 
   # Create a new Note with the generated data
   Note.create(body: body, date: date, time: time, patient_id: patient_id, service_id: service_id, user_id: user_id)
