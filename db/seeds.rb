@@ -52,7 +52,7 @@ Service.create!(
   title: "massage",
 )
 Service.create!(
-  id: 1,
+  id: 3,
   coverage: "cash",
   duration: "60",
   price: "70",
