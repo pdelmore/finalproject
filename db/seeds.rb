@@ -12,7 +12,6 @@ User.destroy_all
 Note.destroy_all
 
 User.create!(
-  id: 1,
   first_name: "Alice",
   last_name: "Smith",
   email: "alice@example.com",
