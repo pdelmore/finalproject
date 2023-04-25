@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   has_many :patients, { :through => :notes, :source => :patient }
 
-  has_many :conversations, { :class_name => "Conversation", :foreign_key => "owner_id", :dependent => :destroy }
+  # has_many :conversations, { :class_name => "Conversation", :foreign_key => "owner_id", :dependent => :destroy }
 
   has_many :sent_messages, { :class_name => "Message", :foreign_key => "sender_id", :dependent => :destroy }
 
