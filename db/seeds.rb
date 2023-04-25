@@ -38,21 +38,18 @@ User.create!(
 end
 
 Service.create!(
-  id: 1,
   coverage: "cash",
   duration: "30",
   price: "35",
   title: "massage",
 )
 Service.create!(
-  id: 2,
   coverage: "cash",
   duration: "45",
   price: "51",
   title: "massage",
 )
 Service.create!(
-  id: 3,
   coverage: "cash",
   duration: "60",
   price: "70",
