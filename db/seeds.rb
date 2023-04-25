@@ -40,18 +40,21 @@ Service.create!(
   duration: "30",
   price: "35",
   title: "massage",
+  id: 1000
 )
 Service.create!(
   coverage: "cash",
   duration: "45",
   price: "51",
   title: "massage",
+  id: 1001
 )
 Service.create!(
   coverage: "cash",
   duration: "60",
   price: "70",
   title: "massage",
+  id: 1002
 )
 
 50.times do |i|
