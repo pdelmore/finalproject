@@ -8,6 +8,9 @@
 
 require "faker"
 
+User.destroy_all
+Note.destroy_all
+
 User.create!(
   id: 1,
   first_name: "Alice",
