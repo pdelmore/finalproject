@@ -130,7 +130,7 @@ sample_messages = [
 ]
 
 total_patients = Patient.count
-total_servicess = Service.count
+total_services = Service.count
 total_users = User.count
 # Create 150 new Notes
 # Create 200 new Notes
