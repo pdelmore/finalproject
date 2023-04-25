@@ -11,7 +11,7 @@ require "faker"
 User.destroy_all
 Note.destroy_all
 Service.destroy_all
-Partient.destroy_all
+Patient.destroy_all
 
 User.create!(
   first_name: "Alice",
