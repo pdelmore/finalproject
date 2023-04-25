@@ -10,6 +10,8 @@ require "faker"
 
 User.destroy_all
 Note.destroy_all
+Service.destroy_all
+Partient.destroy_all
 
 User.create!(
   first_name: "Alice",
@@ -40,21 +42,21 @@ Service.create!(
   duration: "30",
   price: "35",
   title: "massage",
-  id: 1000
+  id: 1000,
 )
 Service.create!(
   coverage: "cash",
   duration: "45",
   price: "51",
   title: "massage",
-  id: 1001
+  id: 1001,
 )
 Service.create!(
   coverage: "cash",
   duration: "60",
   price: "70",
   title: "massage",
-  id: 1002
+  id: 1002,
 )
 
 50.times do |i|
