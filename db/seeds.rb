@@ -8,10 +8,10 @@
 
 require "faker"
 
-User.destroy_all
 Note.destroy_all
-Service.destroy_all
 Patient.destroy_all
+User.destroy_all
+Service.destroy_all
 
 User.create!(
   first_name: "Alice",
@@ -136,7 +136,7 @@ total_services = Service.count
 total_users = User.count
 # Create 150 new Notes
 # Create 200 new Notes
-300.times do
+300.times do |i|
   # Generate random data for the Note
   body = sample_messages.sample(rand(3..8)).join("\n")
   date = Faker::Date.between(from: "2023-04-01", to: "2023-05-30")
