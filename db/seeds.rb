@@ -79,7 +79,7 @@ Service.create!(
   )
 end
 
-# Define an array of sample messages
+
 sample_messages = [
   "Patient reports feeling more relaxed after the massage.",
   "Noted an increase in range of motion in the patient's left shoulder.",
@@ -131,22 +131,21 @@ sample_messages = [
   "Noted some areas of restriction in the patient's hip and knee joints.",
 ]
 
-total_patients = Patient.count
-total_services = Service.count
-total_users = User.count
-# Create 150 new Notes
-# Create 200 new Notes
-300.times do |i|
-  # Generate random data for the Note
-  body = sample_messages.sample(rand(3..8)).join("\n")
-  date = Faker::Date.between(from: "2023-04-01", to: "2023-05-30")
-  time = Faker::Time.between(from: date.to_time + 10.hours, to: date.to_time + 19.hours)
-  patient_id = rand(1..total_patients)
-  service_id = rand(1..total_services)
-  user_id = rand(1..total_users)
+start_date = Date.parse("April 1, 2021")
+end_date = Date.parse("May 30, 2023")
+start_time = Time.parse("8:00am")
+end_time = Time.parse("6:00pm")
 
-  # Create a new Note with the generated data
-  Note.create(body: body, date: date, time: time, patient_id: patient_id, service_id: service_id, user_id: user_id)
+
+300.times do
+  Note.create(
+    body: sample_messages.sample(rand(3..8)).join("\n"),
+    date: rand(start_date..end_date),
+    time: rand(start_time..end_time),
+    patient_id: rand(1..50),
+    user_id: rand(1..10), 
+    service_id: rand(1..3) 
+  )
 end
 
 puts "Generated sample data"
