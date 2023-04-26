@@ -5,8 +5,9 @@
 
 
 ## About the project
-
-![]
+<div>
+<img src="public/img/screenshot1.png">
+</div>
 
 ## Created with
 * Ruby on Rails
